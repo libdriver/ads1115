@@ -6,9 +6,12 @@
 
 [English](/README.md) | [ 简体中文](/README_CN.md)
 
+ADS1115 is an ultra small package, low power, IIC bus interface, 16 bit conversion accuracy, internal voltage reference and programmable voltage comparator ADC chip launched by Texas Instruments. The chip is used in portable Instrumentation, battery voltage and current monitoring, temperature measurement system, consumer electronics, factory automation and process control and so on.
+
+LibDriver ADS1115 is the full function driver of ADS1115 launched by LibDriver.LibDriver ADS1115 provides continuous mode A / D conversion, single mode A / D conversion, multi-channel sampling switching, programmable voltage comparator and other functions.
+
 ### Table of Contents
 
-  - [Description](#Description)
   - [Instruction](#Instruction)
   - [Install](#Install)
   - [Usage](#Usage)
@@ -19,13 +22,6 @@
   - [Contributing](#Contributing)
   - [License](#License)
   - [Contact Us](#Contact-Us)
-
-
-### Description
-
-ADS1115 is an ultra small package, low power, IIC bus interface, 16 bit conversion accuracy, internal voltage reference and programmable voltage comparator ADC chip launched by Texas Instruments. The chip is used in portable Instrumentation, battery voltage and current monitoring, temperature measurement system, consumer electronics, factory automation and process control and so on.
-
-LibDriver ADS1115 is the full function driver of ADS1115 launched by LibDriver.LibDriver ADS1115 provides continuous mode A / D conversion, single mode A / D conversion, multi-channel sampling switching, programmable voltage comparator and other functions.
 
 ### Instruction
 

@@ -4,7 +4,7 @@
 
 ## LibDriver ADS1115
 
-[English](/README.md) | [ 简体中文](/README_zh_Hans.md) | [繁體中文](/README_zh_Hant.md)
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
 
 ADS1115是德州仪器公司推出的一款超小封装、低功耗、拥有IIC总线接口、16位转换精度，拥有内部电压参考和可编程电压比较器的模数转换芯片。该芯片被应用于便携式采集设备、电池电压电流监控、温度测量系统、消费类电子产品以及工厂自动化与过程控制。
 

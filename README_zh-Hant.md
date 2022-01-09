@@ -1,10 +1,12 @@
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+
 <div align=center>
 <img src="/doc/image/logo.png"/>
 </div>
 
 ## LibDriver ADS1115
 
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/ads1115/index.html)[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 ADS1115是德州儀器公司推出的一款超小封裝、低功耗、擁有IIC總線接口、16位轉換精度，擁有內部電壓參考和可編程電壓比較器的模數轉換芯片。該芯片被應用於便攜式採集設備、電池電壓電流監控、溫度測量系統、消費類電子產品以及工廠自動化與過程控制。
 

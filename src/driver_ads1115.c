@@ -143,6 +143,12 @@ uint8_t ads1115_init(ads1115_handle_t *handle)
         
         return 3;                                                    /* return error */
     }
+    if (handle->iic_deinit == NULL)                                  /* check iic_deinit */
+    {
+        handle->debug_print("ads1115: iic_deinit is null.\n");       /* iic_deinit is null */
+        
+        return 3;                                                    /* return error */
+    }
     if (handle->iic_read == NULL)                                    /* check iic_read */
     {
         handle->debug_print("ads1115: iic_read is null.\n");         /* iic_read is null */

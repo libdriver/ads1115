@@ -1,4 +1,4 @@
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md) | [日本語](/README_ja.md) | [Deutsch](/README_de.md) | [한국어](/README_ko.md)
 
 <div align=center>
 <img src="/doc/image/logo.png"/>
@@ -6,11 +6,11 @@
 
 ## LibDriver ADS1115
 
-[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/ads1115/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
+[![MISRA](https://img.shields.io/badge/misra-compliant-brightgreen.svg)](/misra/README.md) [![API](https://img.shields.io/badge/api-reference-blue.svg)](https://www.libdriver.com/docs/ads1115/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 ADS1115是德州仪器公司推出的一款超小封装、低功耗、拥有IIC总线接口、16位转换精度，拥有内部电压参考和可编程电压比较器的模数转换芯片。该芯片被应用于便携式采集设备、电池电压电流监控、温度测量系统、消费类电子产品以及工厂自动化与过程控制。
 
-LibDriver ADS1115是LibDriver推出的ADS1115的全功能驱动，该驱动提供连续模式模数转换、单次模式模数转换，多通道采样切换，可编程电压比较器等功能。
+LibDriver ADS1115是LibDriver推出的ADS1115的全功能驱动，该驱动提供连续模式模数转换、单次模式模数转换，多通道采样切换，可编程电压比较器等功能并且它符合MISRA标准。
 
 ### 目录
 
@@ -57,11 +57,12 @@ uint8_t i;
 float s;
 
 res = ads1115_basic_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: basic init failed.\n");         
 
     return 1;
+
 }
 
 ...
@@ -69,10 +70,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_basic_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: basic read failed.\n");
-        ads1115_basic_deinit();
+        (void)ads1115_basic_deinit();
 
         return 1;
     }
@@ -80,11 +81,12 @@ for (i = 0; i < 3; i++)
     ads1115_interface_delay_ms(1000);
     
     ...
+
 }
 
 ...
     
-ads1115_basic_deinit();
+(void)ads1115_basic_deinit();
 
 return 0;
 ```
@@ -97,7 +99,7 @@ uint8_t i;
 float s;
 
 res = ads1115_shot_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: shot init failed.\n");         
 
@@ -110,10 +112,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_shot_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: shot read failed.\n");
-        ads1115_shot_deinit();
+        (void)ads1115_shot_deinit();
 
         return 1;
     }
@@ -121,11 +123,12 @@ for (i = 0; i < 3; i++)
     ads1115_interface_delay_ms(1000);
     
     ...
+
 }
 
 ...
     
-ads1115_shot_deinit();
+(void)ads1115_shot_deinit();
 
 return 0;
 ```
@@ -144,7 +147,7 @@ uint8_t gpio_interrupt_callback(void)
 
 res = ads1115_interrup_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1,
                             ADS1115_COMPARE_THRESHOLD, 1.1f, 1.8f);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: interrupt init failed.\n");         
 
@@ -152,11 +155,13 @@ if (res)
 
 }
 res = gpio_interrupt_init();
-if (res)
+if (res != 0)
 {
-    ads1115_interrupt_deinit();
+    (void)ads1115_interrupt_deinit();
                     
+
     return 1;
+
 }
 
 ...
@@ -164,10 +169,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_interrupt_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: interrupt read failed.\n");
-        ads1115_interrupt_deinit();
+        (void)ads1115_interrupt_deinit();
 
         return 1;
     }
@@ -179,8 +184,8 @@ for (i = 0; i < 3; i++)
 }
 
 ...
-    
-ads1115_interrupt_deinit();
+
+(void)ads1115_interrupt_deinit();
 
 return 0;
 ```

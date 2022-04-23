@@ -50,14 +50,14 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
  */
 uint8_t ads1115_register_test(ads1115_address_t addr)
 {
-    volatile uint8_t res;
-    volatile int16_t high_threshold;
-    volatile int16_t low_threshold;
-    volatile int16_t high_threshold_before;
-    volatile int16_t low_threshold_before;
-    volatile int16_t reg;
-    volatile float f_reg;
-    volatile float f_reg_check;
+    uint8_t res;
+    int16_t high_threshold;
+    int16_t low_threshold;
+    int16_t high_threshold_before;
+    int16_t low_threshold_before;
+    int16_t reg;
+    float f_reg;
+    float f_reg_check;
     ads1115_info_t info;
     ads1115_channel_t channel;
     ads1115_range_t range;
@@ -79,7 +79,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* get information */
     res = ads1115_info(&info);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get info failed.\n");
         
@@ -107,7 +107,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set ADDR_GND */
     res = ads1115_set_addr_pin(&gs_handle, ADS1115_ADDR_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr pin failed.\n");
         
@@ -115,7 +115,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     }
     ads1115_interface_debug_print("ads1115: set addr pin ground.\n");
     res = ads1115_get_addr_pin(&gs_handle, &addr_pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get addr pin failed.\n");
         
@@ -125,7 +125,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set ADDR_VCC */
     res = ads1115_set_addr_pin(&gs_handle, ADS1115_ADDR_VCC);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr pin failed.\n");
         
@@ -133,7 +133,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     }
     ads1115_interface_debug_print("ads1115: set addr pin vcc.\n");
     res = ads1115_get_addr_pin(&gs_handle, &addr_pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get addr pin failed.\n");
         
@@ -143,7 +143,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set ADDR_SDA */
     res = ads1115_set_addr_pin(&gs_handle, ADS1115_ADDR_SDA);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr pin failed.\n");
         
@@ -151,7 +151,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     }
     ads1115_interface_debug_print("ads1115: set addr pin sda.\n");
     res = ads1115_get_addr_pin(&gs_handle, &addr_pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get addr pin failed.\n");
      
@@ -161,7 +161,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set ADDR_SCL */
     res = ads1115_set_addr_pin(&gs_handle, ADS1115_ADDR_SCL);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr pin failed.\n");
         
@@ -169,7 +169,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     }
     ads1115_interface_debug_print("ads1115: set addr pin scl.\n");
     res = ads1115_get_addr_pin(&gs_handle, &addr_pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get addr pin failed.\n");
         
@@ -179,7 +179,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set addr pin */
     res = ads1115_set_addr_pin(&gs_handle, addr);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr failed.\n");
         
@@ -188,7 +188,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* ads1115 init */
     res = ads1115_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: init failed.\n");
         
@@ -200,19 +200,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN0 to GND */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN0_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain0_ground.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -220,19 +220,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN1 to GND */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN1_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain1_ground.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -240,19 +240,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN2 to GND */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN2_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain2_ground.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -260,19 +260,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN3 to GND */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN3_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain3_ground.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -280,19 +280,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN0 to AIN1 */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN0_AIN1);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain0_ain1.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -300,19 +300,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN0 to AIN3 */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN0_AIN3);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain0_ain3.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -320,19 +320,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN1 to AIN3 */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN1_AIN3);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain1_ain3.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -340,19 +340,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* AIN2 to AIN3 */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN2_AIN3);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set channel ain2_ain3.\n");
     res = ads1115_get_channel(&gs_handle, &channel);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
        
         return 1;
     }
@@ -363,19 +363,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 6.144V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_6P144V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 6.144V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -383,19 +383,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 4.096V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_4P096V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 4.096V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -403,19 +403,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 2.048V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_2P048V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 2.048V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -423,19 +423,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 1.024V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_1P024V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 1.024V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -443,19 +443,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 0.512V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_0P512V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 0.512V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -463,19 +463,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 0.256V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_0P256V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set range 0.256V.\n");
     res = ads1115_get_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -486,19 +486,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* pin_low */
     res = ads1115_set_alert_pin(&gs_handle, ADS1115_PIN_LOW);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set alert pin failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set alert pin low.\n");
     res = ads1115_get_alert_pin(&gs_handle, &pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get alert pin failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -506,19 +506,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* pin_high */
     res = ads1115_set_alert_pin(&gs_handle, ADS1115_PIN_HIGH);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set alert pin failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set alert pin high.\n");
     res = ads1115_get_alert_pin(&gs_handle, &pin);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get alert pin failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -529,19 +529,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set threshold */
     res = ads1115_set_compare_mode(&gs_handle, ADS1115_COMPARE_THRESHOLD);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set compare threshold.\n");
     res = ads1115_get_compare_mode(&gs_handle, &compare);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -549,19 +549,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set window */
     res = ads1115_set_compare_mode(&gs_handle, ADS1115_COMPARE_WINDOW);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set compare window.\n");
     res = ads1115_get_compare_mode(&gs_handle, &compare);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -572,19 +572,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 8SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_8SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 8 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -592,19 +592,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 16SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_16SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 16 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -612,19 +612,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 32SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_32SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 32 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -632,19 +632,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 64SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_64SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 64 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -652,19 +652,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 128SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_128SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 128 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -672,19 +672,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 250SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_250SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 250 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -692,19 +692,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 475SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_475SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 475 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -712,19 +712,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 860SPS */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_860SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set rate 860 sps.\n");
     res = ads1115_get_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -735,19 +735,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* none conv */
     res = ads1115_set_comparator_queue(&gs_handle, ADS1115_COMPARATOR_QUEUE_NONE_CONV);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set comparator queue none.\n");
     res = ads1115_get_comparator_queue(&gs_handle, &comparator_queue);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -755,19 +755,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* 1 conv */
     res = ads1115_set_comparator_queue(&gs_handle, ADS1115_COMPARATOR_QUEUE_1_CONV);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set comparator queue 1 conv.\n");
     res = ads1115_get_comparator_queue(&gs_handle, &comparator_queue);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -775,19 +775,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* 2 conv */
     res = ads1115_set_comparator_queue(&gs_handle, ADS1115_COMPARATOR_QUEUE_2_CONV);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set comparator queue 2 conv.\n");
     res = ads1115_get_comparator_queue(&gs_handle, &comparator_queue);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -795,19 +795,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* 4 conv */
     res = ads1115_set_comparator_queue(&gs_handle, ADS1115_COMPARATOR_QUEUE_4_CONV);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set comparator queue 4 conv.\n");
     res = ads1115_get_comparator_queue(&gs_handle, &comparator_queue);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -818,19 +818,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     high_threshold_before = rand()%8196;
     low_threshold_before = -rand()%8196;
     res = ads1115_set_compare_threshold(&gs_handle, high_threshold_before, low_threshold_before);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare threshold failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: set high threshold %d low threshold %d.\n", high_threshold_before, low_threshold_before);
     res = ads1115_get_compare_threshold(&gs_handle, (int16_t *)&high_threshold, (int16_t *)&low_threshold);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get compare threshold failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -842,19 +842,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* enable compare */
     res = ads1115_set_compare(&gs_handle, ADS1115_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: enable compare.\n");
     res = ads1115_get_compare(&gs_handle, (ads1115_bool_t *)&enable);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -862,19 +862,19 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* disable compare */
     res = ads1115_set_compare(&gs_handle, ADS1115_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: disable compare.\n");
     res = ads1115_get_compare(&gs_handle, (ads1115_bool_t *)&enable);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -885,20 +885,20 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 6.144V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_6P144V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = -(rand()%6144)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -906,20 +906,20 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 4.096V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_4P096V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = (rand()%4096)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -927,20 +927,20 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 2.048V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_2P048V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = -(rand()%2048)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -948,20 +948,20 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 1.024V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_1P024V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = (rand()%1024)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -969,20 +969,20 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 0.512V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_0P512V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = -(rand()%512)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -990,29 +990,29 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* set 0.256V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_0P256V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     f_reg = (rand()%256)/1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     ads1115_interface_debug_print("ads1115: check convert to register %d.\n", reg);
     res = ads1115_convert_to_data(&gs_handle, reg, (float *)&f_reg_check);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to data failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -1020,7 +1020,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* finish register */
     ads1115_interface_debug_print("ads1115: finish register test.\n");
-    ads1115_deinit(&gs_handle);
+    (void)ads1115_deinit(&gs_handle);
     
     return 0;
 }

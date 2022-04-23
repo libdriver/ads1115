@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_ADS1115_SHOT_H_
-#define _DRIVER_ADS1115_SHOT_H_
+#ifndef DRIVER_ADS1115_SHOT_H
+#define DRIVER_ADS1115_SHOT_H
 
 #include "driver_ads1115_interface.h"
 

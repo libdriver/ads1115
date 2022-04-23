@@ -50,9 +50,9 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
  */
 uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
 {
-    volatile uint8_t res, i;
-    volatile int16_t high_threshold;
-    volatile int16_t low_threshold;
+    uint8_t res, i;
+    int16_t high_threshold;
+    int16_t low_threshold;
     ads1115_info_t info;
     
     /* link interface function */
@@ -66,7 +66,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* get information */
     res = ads1115_info(&info);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: get info failed.\n");
         
@@ -88,7 +88,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* set addr pin */
     res = ads1115_set_addr_pin(&gs_handle, addr);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set addr failed.\n");
         
@@ -97,7 +97,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* ads1115 init */
     res = ads1115_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: init failed.\n");
         
@@ -106,100 +106,100 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* set channel AIN0 GND */
     res = ads1115_set_channel(&gs_handle, ADS1115_CHANNEL_AIN0_GND);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set channel failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set range 6.144V */
     res = ads1115_set_range(&gs_handle, ADS1115_RANGE_6P144V);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set range failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set alert pin low */
     res = ads1115_set_alert_pin(&gs_handle, ADS1115_PIN_LOW);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set alert pin failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set threshold compare mode */
     res = ads1115_set_compare_mode(&gs_handle, ADS1115_COMPARE_THRESHOLD);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compate mode failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set 128sps rate */
     res = ads1115_set_rate(&gs_handle, ADS1115_RATE_128SPS);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set rate failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set queue none conv */
     res = ads1115_set_comparator_queue(&gs_handle, ADS1115_COMPARATOR_QUEUE_NONE_CONV);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set comparator queue failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* disable compare */
     res = ads1115_set_compare(&gs_handle, ADS1115_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* convert to register */
     res = ads1115_convert_to_register(&gs_handle, 3.3f, (int16_t *)&high_threshold);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to high threshold register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* convert to register */
     res = ads1115_convert_to_register(&gs_handle, 1.8f, (int16_t *)&low_threshold);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: convert to low threshold register failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
     
     /* set compare threshold */
     res = ads1115_set_compare_threshold(&gs_handle, high_threshold, low_threshold);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: set compare threshold failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -213,10 +213,10 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     /* start continuous read */
     ads1115_interface_debug_print("ads1115: continuous read test.\n");
     res = ads1115_start_continuous_read(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: start continus read mode failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -225,15 +225,15 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     ads1115_interface_delay_ms(100);
     for (i=0; i<times; i++)
     {
-        volatile int16_t raw;
-        volatile float s;
+        int16_t raw;
+        float s;
       
         /* continuous read */
         res = ads1115_continuous_read(&gs_handle, (int16_t *)&raw, (float *)&s);
-        if (res)
+        if (res != 0)
         {
             ads1115_interface_debug_print("ads1115: read failed.\n");
-            ads1115_deinit(&gs_handle);
+            (void)ads1115_deinit(&gs_handle);
             
             return 1;
         }
@@ -243,10 +243,10 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* stop continuous read */
     res = ads1115_stop_continuous_read(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: stop continus read mode failed.\n");
-        ads1115_deinit(&gs_handle);
+        (void)ads1115_deinit(&gs_handle);
         
         return 1;
     }
@@ -255,15 +255,15 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     ads1115_interface_debug_print("ads1115: single read test.\n");
     for (i=0; i<times; i++)
     {
-        volatile int16_t raw;
-        volatile float s;
+        int16_t raw;
+        float s;
      
         /* single read */
         res = ads1115_single_read(&gs_handle, (int16_t *)&raw, (float *)&s);
-        if (res)
+        if (res != 0)
         {
             ads1115_interface_debug_print("ads1115: read failed.\n");
-            ads1115_deinit(&gs_handle);
+            (void)ads1115_deinit(&gs_handle);
             
             return 1;
         }
@@ -273,7 +273,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* finish read test */
     ads1115_interface_debug_print("ads1115: finish read test.\n");
-    ads1115_deinit(&gs_handle);
+    (void)ads1115_deinit(&gs_handle);
     
     return 0;
 }

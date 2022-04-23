@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_ADS1115_READ_TEST_H_
-#define _DRIVER_ADS1115_READ_TEST_H_
+#ifndef DRIVER_ADS1115_READ_TEST_H
+#define DRIVER_ADS1115_READ_TEST_H
 #ifdef __cplusplus
 extern "C"{
 #endif

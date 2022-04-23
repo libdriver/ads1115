@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_ADS1115_BASIC_H_
-#define _DRIVER_ADS1115_BASIC_H_
+#ifndef DRIVER_ADS1115_BASIC_H
+#define DRIVER_ADS1115_BASIC_H
 
 #include "driver_ads1115_interface.h"
 

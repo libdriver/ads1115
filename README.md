@@ -1,4 +1,4 @@
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md) | [日本語](/README_ja.md) | [Deutsch](/README_de.md) | [한국어](/README_ko.md)
 
 <div align=center>
 <img src="/doc/image/logo.png"/>
@@ -6,11 +6,11 @@
 
 ## LibDriver ADS1115
 
-[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/ads1115/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
+[![MISRA](https://img.shields.io/badge/misra-compliant-brightgreen.svg)](/misra/README.md) [![API](https://img.shields.io/badge/api-reference-blue.svg)](https://www.libdriver.com/docs/ads1115/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 ADS1115 is an ultra small package, low power, IIC bus interface, 16 bit conversion accuracy, internal voltage reference and programmable voltage comparator ADC chip launched by Texas Instruments. The chip is used in portable Instrumentation, battery voltage and current monitoring, temperature measurement system, consumer electronics, factory automation and process control and so on.
 
-LibDriver ADS1115 is the full function driver of ADS1115 launched by LibDriver.LibDriver ADS1115 provides continuous mode A / D conversion, single mode A / D conversion, multi-channel sampling switching, programmable voltage comparator and other functions.
+LibDriver ADS1115 is the full function driver of ADS1115 launched by LibDriver.LibDriver ADS1115 provides continuous mode A / D conversion, single mode A / D conversion, multi-channel sampling switching, programmable voltage comparator and other functions. LibDriver is MISRA compliant.
 
 ### Table of Contents
 
@@ -57,7 +57,7 @@ uint8_t i;
 float s;
 
 res = ads1115_basic_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: basic init failed.\n");         
 
@@ -70,10 +70,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_basic_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: basic read failed.\n");
-        ads1115_basic_deinit();
+        (void)ads1115_basic_deinit();
 
         return 1;
     }
@@ -86,7 +86,7 @@ for (i = 0; i < 3; i++)
 
 ...
     
-ads1115_basic_deinit();
+(void)ads1115_basic_deinit();
 
 return 0;
 ```
@@ -99,7 +99,7 @@ uint8_t i;
 float s;
 
 res = ads1115_shot_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: shot init failed.\n");         
 
@@ -112,10 +112,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_shot_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: shot read failed.\n");
-        ads1115_shot_deinit();
+        (void)ads1115_shot_deinit();
 
         return 1;
     }
@@ -128,7 +128,7 @@ for (i = 0; i < 3; i++)
 
 ...
     
-ads1115_shot_deinit();
+(void)ads1115_shot_deinit();
 
 return 0;
 ```
@@ -147,7 +147,7 @@ uint8_t gpio_interrupt_callback(void)
 
 res = ads1115_interrup_init(ADS1115_ADDR_GND, ADS1115_CHANNEL_AIN0_AIN1,
                             ADS1115_COMPARE_THRESHOLD, 1.1f, 1.8f);
-if (res)
+if (res != 0)
 {
     ads1115_interface_debug_print("ads1115: interrupt init failed.\n");         
 
@@ -155,9 +155,9 @@ if (res)
 
 }
 res = gpio_interrupt_init();
-if (res)
+if (res != 0)
 {
-    ads1115_interrupt_deinit();
+    (void)ads1115_interrupt_deinit();
                     
 
     return 1;
@@ -169,10 +169,10 @@ if (res)
 for (i = 0; i < 3; i++)
 {
     res = ads1115_interrupt_read((float *)&s);
-    if (res)
+    if (res != 0)
     {
         ads1115_interface_debug_print("ads1115: interrupt read failed.\n");
-        ads1115_interrupt_deinit();
+        (void)ads1115_interrupt_deinit();
 
         return 1;
     }
@@ -185,7 +185,7 @@ for (i = 0; i < 3; i++)
 
 ...
 
-ads1115_interrupt_deinit();
+(void)ads1115_interrupt_deinit();
 
 return 0;
 ```

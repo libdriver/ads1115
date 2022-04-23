@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_ADS1115_INTERFACE_H_
-#define _DRIVER_ADS1115_INTERFACE_H_
+#ifndef DRIVER_ADS1115_INTERFACE_H
+#define DRIVER_ADS1115_INTERFACE_H
 
 #include "driver_ads1115.h"
 
@@ -105,10 +105,9 @@ void ads1115_interface_delay_ms(uint32_t ms);
 /**
  * @brief     interface print format data
  * @param[in] fmt is the format data
- * @return    length of the send data
  * @note      none
  */
-uint16_t ads1115_interface_debug_print(char *fmt, ...);
+void ads1115_interface_debug_print(const char *const fmt, ...);
 
 /**
  * @}

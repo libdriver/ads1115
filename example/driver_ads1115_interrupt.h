@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_ADS1115_INTERRUPT_H_
-#define _DRIVER_ADS1115_INTERRUPT_H_
+#ifndef DRIVER_ADS1115_INTERRUPT_H
+#define DRIVER_ADS1115_INTERRUPT_H
 
 #include "driver_ads1115_interface.h"
 
@@ -54,7 +54,6 @@ extern "C"{
  */
 #define ADS1115_INTERRUPT_DEFAULT_RANGE                   ADS1115_RANGE_6P144V                /**< range 6.144V */
 #define ADS1115_INTERRUPT_DEFAULT_ALERT_PIN               ADS1115_PIN_LOW                     /**< pin low */
-#define ADS1115_INTERRUPT_DEFAULT_COMPARE_MODE            ADS1115_COMPARE_THRESHOLD           /**< compare threshold */
 #define ADS1115_INTERRUPT_DEFAULT_RATE                    ADS1115_RATE_128SPS                 /**< 128 SPS */
 #define ADS1115_INTERRUPT_DEFAULT_COMPARATOR_QUEUE        ADS1115_COMPARATOR_QUEUE_2_CONV     /**< 2 conv */
 
@@ -65,14 +64,13 @@ extern "C"{
  * @param[in] compare is the interrupt compare mode
  * @param[in] f_high_threshold is the interrupt high threshold
  * @param[in] f_low_threshold is the interrupt low threshold
- * @param[in] times is the test times
  * @return    status code
  *            - 0 success
  *            - 1 init failed
  * @note      none
  */
 uint8_t ads1115_interrupt_init(ads1115_address_t addr, ads1115_channel_t channel, ads1115_compare_t compare, 
-                               float f_high_threshold, float f_low_threshold, uint32_t times);
+                               float f_high_threshold, float f_low_threshold);
 
 /**
  * @brief      interrupt example read

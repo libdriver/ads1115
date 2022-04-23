@@ -193,7 +193,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 }
                 
                 /* run reg test */
-                if (ads1115_register_test(addr))
+                if (ads1115_register_test(addr) != 0)
                 {
                     return 1;
                 }
@@ -251,7 +251,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                if (ads1115_read_test(addr, atoi(argv[3])))
+                if (ads1115_read_test(addr, atoi(argv[3])) != 0)
                 {
                     return 1;
                 }
@@ -352,7 +352,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                if (ads1115_multichannel_test(addr, channel, atoi(argv[3])))
+                if (ads1115_multichannel_test(addr, channel, atoi(argv[3])) != 0)
                 {
                     return 1;
                 }
@@ -375,9 +375,9 @@ uint8_t ads1115(uint8_t argc, char **argv)
             /* read function */
             if (strcmp("read", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t i, times;
-                volatile float s;
+                uint8_t res;
+                uint32_t i, times;
+                float s;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
                 
@@ -450,19 +450,19 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 }
                 times = atoi(argv[3]);
                 res = ads1115_basic_init(addr, channel);
-                if (res)
+                if (res != 0)
                 {
                     ads1115_interface_debug_print("ads1115: basic init failed.\n");
                     
                     return 1;
                 }
-                for (i=0; i<times; i++)
+                for (i = 0; i < times; i++)
                 {
                     res = ads1115_basic_read((float *)&s);
-                    if (res)
+                    if (res != 0)
                     {
                         ads1115_interface_debug_print("ads1115: basic read failed.\n");
-                        ads1115_basic_deinit();
+                        (void)ads1115_basic_deinit();
                         
                         return 1;
                     }
@@ -470,7 +470,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     ads1115_interface_debug_print("ads1115: adc is %0.4fV.\n", s);
                     ads1115_interface_delay_ms(1000);
                 }
-                ads1115_basic_deinit();
+                (void)ads1115_basic_deinit();
                 
                 return 0;
             }
@@ -478,9 +478,9 @@ uint8_t ads1115(uint8_t argc, char **argv)
             /* shot function */
             else if (strcmp("shot", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t i, times;
-                volatile float s;
+                uint8_t res;
+                uint32_t i, times;
+                float s;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
                 
@@ -553,19 +553,19 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 }
                 times = atoi(argv[3]);
                 res = ads1115_shot_init(addr, channel);
-                if (res)
+                if (res != 0)
                 {
                     ads1115_interface_debug_print("ads1115: basic init failed.\n");
                     
                     return 1;
                 }
-                for (i=0; i<times; i++)
+                for (i = 0; i < times; i++)
                 {
                     res = ads1115_shot_read((float *)&s);
-                    if (res)
+                    if (res != 0)
                     {
                         ads1115_interface_debug_print("ads1115: basic read failed.\n");
-                        ads1115_shot_deinit();
+                        (void)ads1115_shot_deinit();
                         
                         return 1;
                     }
@@ -573,7 +573,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     ads1115_interface_debug_print("ads1115: adc is %0.4fV.\n", s);
                     ads1115_interface_delay_ms(1000);
                 }
-                ads1115_shot_deinit();
+                (void)ads1115_shot_deinit();
                 
                 return 0;
             }
@@ -599,9 +599,8 @@ uint8_t ads1115(uint8_t argc, char **argv)
             /* int test */
             if (strcmp("int", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t i;
-                volatile uint32_t times;
+                uint8_t res;
+                uint32_t times;
                 ads1115_compare_t compare;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
@@ -699,18 +698,18 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 }
                 times = atoi(argv[3]);
                 res = gpio_interrupt_init();
-                if (res)
+                if (res != 0)
                 {
                     return 1;
                 }
-                res = ads1115_compare_test(addr, channel, compare, atof(argv[12]), atof(argv[11]), times);
-                if (res)
+                res = ads1115_compare_test(addr, channel, compare, (float)atof(argv[12]), (float)atof(argv[11]), times);
+                if (res != 0)
                 {
-                    gpio_interrupt_deinit();
+                    (void)gpio_interrupt_deinit();
                     
                     return 1;
                 }
-                gpio_interrupt_deinit();
+                (void)gpio_interrupt_deinit();
                 
                 return 0;
             }
@@ -728,10 +727,10 @@ uint8_t ads1115(uint8_t argc, char **argv)
              /* read function */
             if (strcmp("int", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t i;
-                volatile uint32_t times;
-                volatile float s;
+                uint8_t res;
+                uint32_t i;
+                uint32_t times;
+                float s;
                 ads1115_compare_t compare;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
@@ -828,28 +827,28 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     return 5;
                 }
                 times = atoi(argv[3]);
-                res = ads1115_interrupt_init(addr, channel, compare, atof(argv[12]), atof(argv[11]), times);
-                if (res)
+                res = ads1115_interrupt_init(addr, channel, compare, (float)atof(argv[12]), (float)atof(argv[11]));
+                if (res != 0)
                 {
                     return 1;
                 }
                 res = gpio_interrupt_init();
-                if (res)
+                if (res != 0)
                 {
-                    ads1115_interrupt_deinit();
+                    (void)ads1115_interrupt_deinit();
                     
                     return 1;
                 }
                 g_flag = 0;
-                for (i=0; i<times; i++)
+                for (i = 0; i < times; i++)
                 {
                     /* read data */
                     ads1115_interface_delay_ms(1000);
                     res = ads1115_interrupt_read((float *)&s);
-                    if (res)
+                    if (res != 0)
                     {
-                        ads1115_interrupt_deinit();
-                        gpio_interrupt_deinit();
+                        (void)ads1115_interrupt_deinit();
+                        (void)gpio_interrupt_deinit();
                         
                         return 1;
                     }
@@ -857,7 +856,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     ads1115_interface_debug_print("ads1115: read is %0.4fV.\n", s);
                     
                     /* check interrupt */
-                    if (g_flag)
+                    if (g_flag != 0)
                     {
                         ads1115_interface_debug_print("ads1115: find interrupt.\n");
                         
@@ -865,8 +864,8 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     }
                     
                 }
-                ads1115_interrupt_deinit();
-                gpio_interrupt_deinit();
+                (void)ads1115_interrupt_deinit();
+                (void)gpio_interrupt_deinit();
                 
                 return 0;
             }
@@ -898,7 +897,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
  */
 int main(void)
 {
-    volatile uint8_t res;
+    uint8_t res;
     
     /* stm32f407 clock init and hal init */
     clock_init();

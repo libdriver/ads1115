@@ -75,13 +75,14 @@
  *             - 1 read failed
  * @note       none
  */
-static uint8_t _ads1115_iic_multiple_read(ads1115_handle_t *handle, uint8_t reg, int16_t *data)
+static uint8_t a_ads1115_iic_multiple_read(ads1115_handle_t *handle, uint8_t reg, int16_t *data)
 {
-    volatile uint8_t buf[2];
+    uint8_t buf[2];
     
+    memset(buf, 0, sizeof(uint8_t) * 2);                                        /* clear the buffer */
     if (handle->iic_read(handle->iic_addr, reg, (uint8_t *)buf, 2) == 0)        /* read data */
     {
-        *data = (buf[0] << 8) | buf[1];                                         /* set data */
+        *data = (uint16_t)(((uint16_t)buf[0] << 8) | buf[1]);                   /* set data */
        
         return 0;                                                               /* success return 0 */
     }
@@ -101,13 +102,13 @@ static uint8_t _ads1115_iic_multiple_read(ads1115_handle_t *handle, uint8_t reg,
  *            - 1 write failed
  * @note      none
  */
-static uint8_t _ads1115_iic_multiple_write(ads1115_handle_t *handle, uint8_t reg, uint16_t data)
+static uint8_t a_ads1115_iic_multiple_write(ads1115_handle_t *handle, uint8_t reg, uint16_t data)
 {
-    volatile uint8_t buf[2];
+    uint8_t buf[2];
   
     buf[0] = (data >> 8) & 0xFF;                                            /* set MSB */
     buf[1] = data & 0xFF;                                                   /* set LSB */
-    if (handle->iic_write(handle->iic_addr, reg, (uint8_t *)buf, 2))        /* write data */
+    if (handle->iic_write(handle->iic_addr, reg, (uint8_t *)buf, 2) != 0)   /* write data */
     {
         return 1;                                                           /* return error */
     }
@@ -168,7 +169,7 @@ uint8_t ads1115_init(ads1115_handle_t *handle)
         return 3;                                                    /* return error */
     }
     
-    if (handle->iic_init())                                          /* iic init */
+    if (handle->iic_init() != 0)                                     /* iic init */
     {
         handle->debug_print("ads1115: iic init failed.\n");          /* iic init failed */
         
@@ -192,8 +193,8 @@ uint8_t ads1115_init(ads1115_handle_t *handle)
  */
 uint8_t ads1115_deinit(ads1115_handle_t *handle)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -204,8 +205,8 @@ uint8_t ads1115_deinit(ads1115_handle_t *handle)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -213,15 +214,15 @@ uint8_t ads1115_deinit(ads1115_handle_t *handle)
     }
     conf &= ~(0x01 << 8);                                                                  /* clear bit */
     conf |= 1 << 8;                                                                        /* set stop continus read */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
         return 4;                                                                          /* return error */
     }
     res = handle->iic_deinit();                                                            /* close iic */
-    if (res)
+    if (res != 0)                                                                          /* check the result */
     {
         handle->debug_print("ads1115: iic deinit failed.\n");                              /* iic deinit failed */
         
@@ -245,8 +246,8 @@ uint8_t ads1115_deinit(ads1115_handle_t *handle)
  */
 uint8_t ads1115_set_channel(ads1115_handle_t *handle, ads1115_channel_t channel)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -257,8 +258,8 @@ uint8_t ads1115_set_channel(ads1115_handle_t *handle, ads1115_channel_t channel)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -266,8 +267,8 @@ uint8_t ads1115_set_channel(ads1115_handle_t *handle, ads1115_channel_t channel)
     }
     conf &= ~(0x07 << 12);                                                                 /* clear channel */
     conf |= (channel & 0x07) << 12;                                                        /* set channel */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -290,8 +291,8 @@ uint8_t ads1115_set_channel(ads1115_handle_t *handle, ads1115_channel_t channel)
  */
 uint8_t ads1115_get_channel(ads1115_handle_t *handle, ads1115_channel_t *channel)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -302,8 +303,8 @@ uint8_t ads1115_get_channel(ads1115_handle_t *handle, ads1115_channel_t *channel
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -327,8 +328,8 @@ uint8_t ads1115_get_channel(ads1115_handle_t *handle, ads1115_channel_t *channel
  */
 uint8_t ads1115_set_range(ads1115_handle_t *handle, ads1115_range_t range)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -339,8 +340,8 @@ uint8_t ads1115_set_range(ads1115_handle_t *handle, ads1115_range_t range)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -348,8 +349,8 @@ uint8_t ads1115_set_range(ads1115_handle_t *handle, ads1115_range_t range)
     }
     conf &= ~(0x07 << 9);                                                                  /* clear range */
     conf |= (range & 0x07) << 9;                                                           /* set range */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -372,8 +373,8 @@ uint8_t ads1115_set_range(ads1115_handle_t *handle, ads1115_range_t range)
  */
 uint8_t ads1115_get_range(ads1115_handle_t *handle, ads1115_range_t *range)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -384,8 +385,8 @@ uint8_t ads1115_get_range(ads1115_handle_t *handle, ads1115_range_t *range)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -409,8 +410,8 @@ uint8_t ads1115_get_range(ads1115_handle_t *handle, ads1115_range_t *range)
  */
 uint8_t ads1115_set_alert_pin(ads1115_handle_t *handle, ads1115_pin_t pin)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -421,8 +422,8 @@ uint8_t ads1115_set_alert_pin(ads1115_handle_t *handle, ads1115_pin_t pin)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -430,8 +431,8 @@ uint8_t ads1115_set_alert_pin(ads1115_handle_t *handle, ads1115_pin_t pin)
     }
     conf &= ~(1 << 3);                                                                     /* clear alert pin */
     conf |= (pin & 0x01) << 3;                                                             /* set alert pin */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -454,8 +455,8 @@ uint8_t ads1115_set_alert_pin(ads1115_handle_t *handle, ads1115_pin_t pin)
  */
 uint8_t ads1115_get_alert_pin(ads1115_handle_t *handle, ads1115_pin_t *pin)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -466,8 +467,8 @@ uint8_t ads1115_get_alert_pin(ads1115_handle_t *handle, ads1115_pin_t *pin)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -491,8 +492,8 @@ uint8_t ads1115_get_alert_pin(ads1115_handle_t *handle, ads1115_pin_t *pin)
  */
 uint8_t ads1115_set_compare_mode(ads1115_handle_t *handle, ads1115_compare_t compare)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -503,8 +504,8 @@ uint8_t ads1115_set_compare_mode(ads1115_handle_t *handle, ads1115_compare_t com
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -512,8 +513,8 @@ uint8_t ads1115_set_compare_mode(ads1115_handle_t *handle, ads1115_compare_t com
     }
     conf &= ~(1 << 4);                                                                     /* clear compare mode */
     conf |= (compare & 0x01) << 4;                                                         /* set compare mode */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -536,8 +537,8 @@ uint8_t ads1115_set_compare_mode(ads1115_handle_t *handle, ads1115_compare_t com
  */
 uint8_t ads1115_get_compare_mode(ads1115_handle_t *handle, ads1115_compare_t *compare)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -548,8 +549,8 @@ uint8_t ads1115_get_compare_mode(ads1115_handle_t *handle, ads1115_compare_t *co
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -573,8 +574,8 @@ uint8_t ads1115_get_compare_mode(ads1115_handle_t *handle, ads1115_compare_t *co
  */
 uint8_t ads1115_set_rate(ads1115_handle_t *handle, ads1115_rate_t rate)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -585,8 +586,8 @@ uint8_t ads1115_set_rate(ads1115_handle_t *handle, ads1115_rate_t rate)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -594,8 +595,8 @@ uint8_t ads1115_set_rate(ads1115_handle_t *handle, ads1115_rate_t rate)
     }
     conf &= ~(0x07 << 5);                                                                  /* clear rate */
     conf |= (rate & 0x07) << 5;                                                            /* set rate */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -618,8 +619,8 @@ uint8_t ads1115_set_rate(ads1115_handle_t *handle, ads1115_rate_t rate)
  */
 uint8_t ads1115_get_rate(ads1115_handle_t *handle, ads1115_rate_t *rate)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -630,8 +631,8 @@ uint8_t ads1115_get_rate(ads1115_handle_t *handle, ads1115_rate_t *rate)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -655,8 +656,8 @@ uint8_t ads1115_get_rate(ads1115_handle_t *handle, ads1115_rate_t *rate)
  */
 uint8_t ads1115_set_comparator_queue(ads1115_handle_t *handle, ads1115_comparator_queue_t comparator_queue)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -667,8 +668,8 @@ uint8_t ads1115_set_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -676,8 +677,8 @@ uint8_t ads1115_set_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
     }
     conf &= ~(0x03 << 0);                                                                  /* clear comparator queue */
     conf |= (comparator_queue & 0x03) << 0;                                                /* set comparator queue */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -700,8 +701,8 @@ uint8_t ads1115_set_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
  */
 uint8_t ads1115_get_comparator_queue(ads1115_handle_t *handle, ads1115_comparator_queue_t *comparator_queue)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -712,8 +713,8 @@ uint8_t ads1115_get_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -824,10 +825,10 @@ uint8_t ads1115_get_addr_pin(ads1115_handle_t *handle, ads1115_address_t *addr_p
  */
 uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
 {
-    volatile uint8_t res;
-    volatile uint8_t range;
-    volatile uint16_t conf;
-    volatile uint32_t timeout = 500;
+    uint8_t res;
+    uint8_t range;
+    uint16_t conf;
+    uint32_t timeout = 500;
     
     if (handle == NULL)                                                                        /* check handle */
     {
@@ -838,8 +839,8 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
         return 3;                                                                              /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);            /* read config */
-    if (res)                                                                                   /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);           /* read config */
+    if (res != 0)                                                                              /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                                 /* read config failed */
         
@@ -849,18 +850,18 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
     conf &= ~(1 << 8);                                                                         /* clear bit */
     conf |= 1 << 8;                                                                            /* set single read */
     conf |= 1 << 15;                                                                           /* start single read */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                       /* write config */
-    if (res)                                                                                   /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                      /* write config */
+    if (res != 0)                                                                              /* check error */
     {
         handle->debug_print("ads1115: wirte config failed.\n");                                /* write config failed */
         
         return 1;                                                                              /* return error */
     }
-    while (timeout)                                                                            /* check timeout */
+    while (timeout != 0)                                                                       /* check timeout */
     {
         handle->delay_ms(8);                                                                   /* wait 8 ms */
-        res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-        if (res)                                                                               /* check error */
+        res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+        if (res != 0)                                                                          /* check error */
         {
             handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
             
@@ -878,8 +879,8 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
         
         return 1;                                                                              /* return error */
     }
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                        /* read data */
-    if (res)
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                       /* read data */
+    if (res != 0)                                                                              /* check the result */
     {
         handle->debug_print("ads1115: continus read failed.\n");                               /* continus read failed */
         
@@ -934,9 +935,9 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
  */
 uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
 {
-    volatile uint8_t res;
-    volatile uint8_t range;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint8_t range;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -947,16 +948,16 @@ uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
         return 1;                                                                          /* return error */
     }
     range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conif */
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                    /* read data */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                   /* read data */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: continuous read failed.\n");                         /* continuous read failed */
         
@@ -1008,8 +1009,8 @@ uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
  */
 uint8_t ads1115_start_continuous_read(ads1115_handle_t *handle)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1020,16 +1021,16 @@ uint8_t ads1115_start_continuous_read(ads1115_handle_t *handle)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
         return 1;                                                                          /* return error */
     }
     conf &= ~(0x01 << 8);                                                                  /* set start continuous read */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -1051,8 +1052,8 @@ uint8_t ads1115_start_continuous_read(ads1115_handle_t *handle)
  */
 uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1063,8 +1064,8 @@ uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -1072,8 +1073,8 @@ uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle)
     }
     conf &= ~(0x01 << 8);                                                                  /* clear bit */
     conf |= 1 << 8;                                                                        /* set stop continus read */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -1096,8 +1097,8 @@ uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle)
  */
 uint8_t ads1115_set_compare(ads1115_handle_t *handle, ads1115_bool_t enable)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1108,8 +1109,8 @@ uint8_t ads1115_set_compare(ads1115_handle_t *handle, ads1115_bool_t enable)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -1117,8 +1118,8 @@ uint8_t ads1115_set_compare(ads1115_handle_t *handle, ads1115_bool_t enable)
     }
     conf &= ~(0x01 << 2);                                                                  /* clear compare */
     conf |= enable << 2;                                                                   /* set compare */
-    res = _ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                   /* write config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: write config failed.\n");                            /* write config failed */
         
@@ -1141,8 +1142,8 @@ uint8_t ads1115_set_compare(ads1115_handle_t *handle, ads1115_bool_t enable)
  */
 uint8_t ads1115_get_compare(ads1115_handle_t *handle, ads1115_bool_t *enable)
 {
-    volatile uint8_t res;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1153,8 +1154,8 @@ uint8_t ads1115_get_compare(ads1115_handle_t *handle, ads1115_bool_t *enable)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -1188,13 +1189,13 @@ uint8_t ads1115_set_compare_threshold(ads1115_handle_t *handle, int16_t high_thr
         return 3;                                                                         /* return error */
     }
     
-    if (_ads1115_iic_multiple_write(handle, ADS1115_REG_HIGHRESH, high_threshold))        /* write high threshold */
+    if (a_ads1115_iic_multiple_write(handle, ADS1115_REG_HIGHRESH, high_threshold) != 0)  /* write high threshold */
     {
         handle->debug_print("ads1115: write high threshold failed.\n");                   /* write high threshold failed */
         
         return 1;                                                                         /* return error */
     }
-    if (_ads1115_iic_multiple_write(handle, ADS1115_REG_LOWRESH, low_threshold))          /* write low threshold */
+    if (a_ads1115_iic_multiple_write(handle, ADS1115_REG_LOWRESH, low_threshold) != 0)    /* write low threshold */
     {
         handle->debug_print("ads1115: write low threshold failed.\n");                    /* write low threshold failed */
         
@@ -1227,13 +1228,13 @@ uint8_t ads1115_get_compare_threshold(ads1115_handle_t *handle, int16_t *high_th
         return 3;                                                                        /* return error */
     }
 
-    if (_ads1115_iic_multiple_read(handle, ADS1115_REG_HIGHRESH, high_threshold))        /* read high threshold */
+    if (a_ads1115_iic_multiple_read(handle, ADS1115_REG_HIGHRESH, high_threshold) != 0)  /* read high threshold */
     {
         handle->debug_print("ads1115: read high threshold failed.\n");                   /* read high threshold failed */
         
         return 1;                                                                        /* return error */
     }
-    if (_ads1115_iic_multiple_read(handle, ADS1115_REG_LOWRESH, low_threshold))          /* read low threshold */
+    if (a_ads1115_iic_multiple_read(handle, ADS1115_REG_LOWRESH, low_threshold) != 0)    /* read low threshold */
     {
         handle->debug_print("ads1115: read low threshold failed.\n");                    /* read low threshold failed */
         
@@ -1257,9 +1258,9 @@ uint8_t ads1115_get_compare_threshold(ads1115_handle_t *handle, int16_t *high_th
  */
 uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *reg)
 {  
-    volatile uint8_t res;
-    volatile uint8_t range;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint8_t range;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1270,8 +1271,8 @@ uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -1326,9 +1327,9 @@ uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *
  */
 uint8_t ads1115_convert_to_data(ads1115_handle_t *handle, int16_t reg, float *s)
 {
-    volatile uint8_t res;
-    volatile uint8_t range;
-    volatile uint16_t conf;
+    uint8_t res;
+    uint8_t range;
+    uint16_t conf;
     
     if (handle == NULL)                                                                    /* check handle */
     {
@@ -1339,8 +1340,8 @@ uint8_t ads1115_convert_to_data(ads1115_handle_t *handle, int16_t reg, float *s)
         return 3;                                                                          /* return error */
     }
     
-    res = _ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);        /* read config */
-    if (res)                                                                               /* check error */
+    res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONFIG, (int16_t *)&conf);       /* read config */
+    if (res != 0)                                                                          /* check error */
     {
         handle->debug_print("ads1115: read config failed.\n");                             /* read config failed */
         
@@ -1404,7 +1405,7 @@ uint8_t ads1115_set_reg(ads1115_handle_t *handle, uint8_t reg, int16_t value)
         return 3;                                                  /* return error */
     }
     
-    return _ads1115_iic_multiple_write(handle, reg, value);        /* write reg */
+    return a_ads1115_iic_multiple_write(handle, reg, value);       /* write reg */
 }
 
 /**
@@ -1430,7 +1431,7 @@ uint8_t ads1115_get_reg(ads1115_handle_t *handle, uint8_t reg, int16_t *value)
         return 3;                                                 /* return error */
     }
     
-    return _ads1115_iic_multiple_read(handle, reg, value);        /* read reg */
+    return a_ads1115_iic_multiple_read(handle, reg, value);       /* read reg */
 }
 
 /**

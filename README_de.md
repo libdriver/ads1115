@@ -29,15 +29,15 @@ LibDriver ADS1115 ist der Treiber mit vollem Funktionsumfang von ADS1115, der vo
 
 /src enthält LibDriver ADS1115-Quelldateien.
 
-/interface enthält die plattformunabhängige Vorlage LibDriver ADS1115 IIC。
+/interface enthält die plattformunabhängige Vorlage LibDriver ADS1115 IIC.
 
-/test enthält den Testcode des LibDriver ADS1115-Treibers und dieser Code kann die erforderliche Funktion des Chips einfach testen。
+/test enthält den Testcode des LibDriver ADS1115-Treibers und dieser Code kann die erforderliche Funktion des Chips einfach testen.
 
 /example enthält LibDriver ADS1115-Beispielcode.
 
 /doc enthält das LibDriver ADS1115-Offlinedokument.
 
-/Datenblatt enthält ADS1115-Datenblatt。
+/Datenblatt enthält ADS1115-Datenblatt.
 
 /project enthält den allgemeinen Beispielcode für Linux- und MCU-Entwicklungsboards. Alle Projekte verwenden das Shell-Skript, um den Treiber zu debuggen, und die detaillierten Anweisungen finden Sie in der README.md jedes Projekts.
 

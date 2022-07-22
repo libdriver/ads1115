@@ -1,0 +1,5 @@
+--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O3 -Otime --apcs=interwork --split_sections -I ..\cmsis -I ..\hal\inc -I ..\interface\inc -I ..\usr\inc -I ..\..\..\src -I ..\..\..\interface -I ..\..\..\example -I ..\..\..\test
+-ID:\Keil\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+-ID:\Keil\ARM\CMSIS\Include
+-D__UVISION_VERSION="531" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx
+-o ..\output\mdk\main.o --omf_browse ..\output\mdk\main.crf --depend ..\output\mdk\main.d "..\usr\src\main.c"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>5</fileVersion>
-    <fileChecksum>3412970639</fileChecksum>
+    <fileChecksum>614335141</fileChecksum>
     <configuration>
         <name>Release</name>
-        <outputs />
+        <outputs>
+            <file>$PROJ_DIR$\..\hal\asm\startup_stm32f407xx_ew.s</file>
+        </outputs>
         <forcedrebuild>
             <name>[REBUILD_ALL]</name>
         </forcedrebuild>

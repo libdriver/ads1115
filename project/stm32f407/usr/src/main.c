@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2015 - present LibDriver All rights reserved
- * 
+ *
  * The MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +19,7 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. 
+ * SOFTWARE.
  *
  * @file      main.c
  * @brief     main source file
@@ -98,7 +98,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         if (strcmp("-i", argv[1]) == 0)
         {
             ads1115_info_t info;
-            
+
             /* print ads1115 info */
             ads1115_info(&info);
             ads1115_interface_debug_print("ads1115: chip is %s.\n", info.chip_name);
@@ -110,7 +110,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
             ads1115_interface_debug_print("ads1115: max current is %0.2fmA.\n", info.max_current_ma);
             ads1115_interface_debug_print("ads1115: max temperature is %0.1fC.\n", info.temperature_max);
             ads1115_interface_debug_print("ads1115: min temperature is %0.1fC.\n", info.temperature_min);
-            
+
             return 0;
         }
         else if (strcmp("-p", argv[1]) == 0)
@@ -119,15 +119,15 @@ uint8_t ads1115(uint8_t argc, char **argv)
             ads1115_interface_debug_print("ads1115: SCL connected to GPIOB PIN8.\n");
             ads1115_interface_debug_print("ads1115: SDA connected to GPIOB PIN9.\n");
             ads1115_interface_debug_print("ads1115: INT connected to GPIOB PIN0.\n");
-            
+
             return 0;
         }
         else if (strcmp("-h", argv[1]) == 0)
         {
             /* show ads1115 help */
-            
+
             help:
-            
+
             ads1115_interface_debug_print("ads1115 -i\n\tshow ads1115 chip and driver information.\n");
             ads1115_interface_debug_print("ads1115 -h\n\tshow ads1115 help.\n");
             ads1115_interface_debug_print("ads1115 -p\n\tshow ads1115 pin connections of the current board.\n");
@@ -148,7 +148,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                                           "| AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -m (THRESHOLD | WINDOW) -th <low_threshold> <high_threshold>"
                                           "\n\trun ads1115 interrupt function.");
             ads1115_interface_debug_print("times means read times.low_threshold and high_threshold means interrupt threshold.\n");
-            
+
             return 0;
         }
         else
@@ -165,7 +165,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
             if (strcmp("reg", argv[2]) == 0)
             {
                 ads1115_address_t addr;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[3]) != 0)
                 {
@@ -191,7 +191,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* run reg test */
                 if (ads1115_register_test(addr) != 0)
                 {
@@ -202,14 +202,14 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     return 0;
                 }
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* param is invalid */
         else
         {
@@ -225,7 +225,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
             if (strcmp("read", argv[2]) == 0)
             {
                 ads1115_address_t addr;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -260,14 +260,14 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     return 0;
                 }
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* param is invalid */
         else
         {
@@ -284,7 +284,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
             {
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -310,7 +310,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check channel */
                 if (strcmp("-ch", argv[6]) != 0)
                 {
@@ -361,14 +361,14 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     return 0;
                 }
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* run function */
         else if (strcmp("-c", argv[1]) == 0)
         {
@@ -380,7 +380,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 float s;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -406,7 +406,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check channel */
                 if (strcmp("-ch", argv[6]) != 0)
                 {
@@ -453,7 +453,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 if (res != 0)
                 {
                     ads1115_interface_debug_print("ads1115: basic init failed.\n");
-                    
+
                     return 1;
                 }
                 for (i = 0; i < times; i++)
@@ -463,7 +463,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     {
                         ads1115_interface_debug_print("ads1115: basic read failed.\n");
                         (void)ads1115_basic_deinit();
-                        
+
                         return 1;
                     }
                     ads1115_interface_debug_print("ads1115: %d/%d.\n", i+1, times);
@@ -471,10 +471,10 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     ads1115_interface_delay_ms(1000);
                 }
                 (void)ads1115_basic_deinit();
-                
+
                 return 0;
             }
-            
+
             /* shot function */
             else if (strcmp("shot", argv[2]) == 0)
             {
@@ -483,7 +483,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 float s;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -509,7 +509,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check channel */
                 if (strcmp("-ch", argv[6]) != 0)
                 {
@@ -556,7 +556,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 if (res != 0)
                 {
                     ads1115_interface_debug_print("ads1115: basic init failed.\n");
-                    
+
                     return 1;
                 }
                 for (i = 0; i < times; i++)
@@ -566,7 +566,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     {
                         ads1115_interface_debug_print("ads1115: basic read failed.\n");
                         (void)ads1115_shot_deinit();
-                        
+
                         return 1;
                     }
                     ads1115_interface_debug_print("ads1115: %d/%d.\n", i+1, times);
@@ -574,17 +574,17 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     ads1115_interface_delay_ms(1000);
                 }
                 (void)ads1115_shot_deinit();
-                
+
                 return 0;
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* param is invalid */
         else
         {
@@ -604,7 +604,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 ads1115_compare_t compare;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -630,7 +630,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check channel */
                 if (strcmp("-ch", argv[6]) != 0)
                 {
@@ -672,7 +672,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check mode */
                 if (strcmp("-m", argv[8]) != 0)
                 {
@@ -690,7 +690,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check threshold */
                 if (strcmp("-th", argv[10]) != 0)
                 {
@@ -706,21 +706,21 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 if (res != 0)
                 {
                     (void)gpio_interrupt_deinit();
-                    
+
                     return 1;
                 }
                 (void)gpio_interrupt_deinit();
-                
+
                 return 0;
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* run function */
         else if (strcmp("-c", argv[1]) == 0)
         {
@@ -734,7 +734,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 ads1115_compare_t compare;
                 ads1115_address_t addr;
                 ads1115_channel_t channel;
-                
+
                 /* check iic address */
                 if (strcmp("-a", argv[4]) != 0)
                 {
@@ -760,7 +760,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check channel */
                 if (strcmp("-ch", argv[6]) != 0)
                 {
@@ -802,7 +802,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check mode */
                 if (strcmp("-m", argv[8]) != 0)
                 {
@@ -820,7 +820,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 {
                     return 5;
                 }
-                
+
                 /* check threshold */
                 if (strcmp("-th", argv[10]) != 0)
                 {
@@ -836,7 +836,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
                 if (res != 0)
                 {
                     (void)ads1115_interrupt_deinit();
-                    
+
                     return 1;
                 }
                 g_flag = 0;
@@ -849,41 +849,41 @@ uint8_t ads1115(uint8_t argc, char **argv)
                     {
                         (void)ads1115_interrupt_deinit();
                         (void)gpio_interrupt_deinit();
-                        
+
                         return 1;
                     }
                     ads1115_interface_debug_print("ads1115: %d/%d.\n", (uint32_t)(i+1), (uint32_t)times);
                     ads1115_interface_debug_print("ads1115: read is %0.4fV.\n", s);
-                    
+
                     /* check interrupt */
                     if (g_flag != 0)
                     {
                         ads1115_interface_debug_print("ads1115: find interrupt.\n");
-                        
+
                         break;
                     }
-                    
+
                 }
                 (void)ads1115_interrupt_deinit();
                 (void)gpio_interrupt_deinit();
-                
+
                 return 0;
             }
-            
+
             /* param is invalid */
             else
             {
                 return 5;
             }
         }
-        
+
         /* param is invalid */
         else
         {
             return 5;
         }
     }
-    
+
     /* param is invalid */
     else
     {
@@ -898,21 +898,21 @@ uint8_t ads1115(uint8_t argc, char **argv)
 int main(void)
 {
     uint8_t res;
-    
+
     /* stm32f407 clock init and hal init */
     clock_init();
-    
+
     /* delay init */
     delay_init();
-    
+
     /* uart1 init */
     uart1_init(115200);
-    
+
     /* shell init && register ads1115 fuction */
     shell_init();
     shell_register("ads1115", ads1115);
     uart1_print("ads1115: welcome to libdriver ads1115.\n");
-    
+
     while (1)
     {
         /* read uart */

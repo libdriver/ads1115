@@ -52,6 +52,8 @@ LibDriver ADS1115は、LibDriverによって起動されたADS1115の全機能�
 #### example basic
 
 ```C
+#include "driver_ads1115_basic.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -94,6 +96,8 @@ return 0;
 #### example shot
 
 ```c
+#include "driver_ads1115_shot.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -136,6 +140,8 @@ return 0;
 #### example interrupt
 
 ```c
+#include "driver_ads1115_interrupt.h"
+
 uint8_t res;
 uint8_t i;
 float s;

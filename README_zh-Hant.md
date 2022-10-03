@@ -52,6 +52,8 @@ LibDriver ADS1115是LibDriver推出的ADS1115的全功能驅動，該驅動提�
 #### example basic
 
 ```C
+#include "driver_ads1115_basic.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -94,6 +96,8 @@ return 0;
 #### example shot
 
 ```C
+#include "driver_ads1115_shot.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -136,6 +140,8 @@ return 0;
 #### example interrupt
 
 ```C
+#include "driver_ads1115_interrupt.h"
+
 uint8_t res;
 uint8_t i;
 float s;

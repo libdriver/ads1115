@@ -29,15 +29,15 @@ LibDriver ADS1115 is the full function driver of ADS1115 launched by LibDriver.L
 
 /src includes LibDriver ADS1115 source files.
 
-/interface includes LibDriver ADS1115 IIC platform independent template。
+/interface includes LibDriver ADS1115 IIC platform independent template.
 
-/test includes LibDriver ADS1115 driver test code and this code can test the chip necessary function simply。
+/test includes LibDriver ADS1115 driver test code and this code can test the chip necessary function simply.
 
 /example includes LibDriver ADS1115 sample code.
 
 /doc includes LibDriver ADS1115 offline document.
 
-/datasheet includes ADS1115 datasheet。
+/datasheet includes ADS1115 datasheet.
 
 /project includes the common Linux and MCU development board sample code. All projects use the shell script to debug the driver and the detail instruction can be found in each project's README.md.
 
@@ -52,6 +52,8 @@ Add /src, /interface and /example to your project.
 #### example basic
 
 ```C
+#include "driver_ads1115_basic.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -94,6 +96,8 @@ return 0;
 #### example shot
 
 ```C
+#include "driver_ads1115_shot.h"
+
 uint8_t res;
 uint8_t i;
 float s;
@@ -136,6 +140,8 @@ return 0;
 #### example interrupt
 
 ```C
+#include "driver_ads1115_interrupt.h"
+
 uint8_t res;
 uint8_t i;
 float s;

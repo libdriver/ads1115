@@ -25,7 +25,7 @@
  * @brief     clock source file
  * @version   1.0.0
  * @author    Shifeng Li
- * @date      2021-2-12
+ * @date      2021-02-12
  *
  * <h3>history</h3>
  * <table>
@@ -46,9 +46,11 @@ void clock_init(void)
     RCC_ClkInitTypeDef RCC_ClkInitStructure;
     HAL_StatusTypeDef ret = HAL_OK;
 
+    /* enable power */
     __HAL_RCC_PWR_CLK_ENABLE();
     __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
+    /* use HSE */
     RCC_OscInitStructure.OscillatorType = RCC_OSCILLATORTYPE_HSE;
     RCC_OscInitStructure.HSEState = RCC_HSE_ON;
     RCC_OscInitStructure.PLL.PLLState = RCC_PLL_ON;
@@ -63,6 +65,7 @@ void clock_init(void)
         while(1);
     }
     
+    /* config clock */
     RCC_ClkInitStructure.ClockType = RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStructure.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStructure.AHBCLKDivider = RCC_SYSCLK_DIV1;
@@ -78,6 +81,7 @@ void clock_init(void)
         __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
     }
     
+    /* hal init */
     ret = HAL_Init();
     if (ret != HAL_OK)
     {

@@ -10,14 +10,14 @@ LibDriver is generally backwards compatible with very few exceptions, so we reco
 
 Instead, please send an email to lishifenging@outlook.com. You should receive a response within 24 hours. If for some reason you do not, please send again to ensure we received your original message. If your report was previously undisclosed, we’ll also mention your name in the credits. 
 
-Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
+Please include the requested information listed below to help us better understand the nature and scope of the possible issue:
 
-- Type of issue.(e.g. buffer overflow, etc.)
+- Type of issue
 - Full paths of source file(s) related to the manifestation of the issue
-- The location of the affected source code (tag/branch/commit or direct URL)
+- The location of the affected source code
 - Any special configuration required to reproduce the issue
 - Step-by-step instructions to reproduce the issue
-- Proof-of-concept or exploit code (if possible)
+- Proof-of-concept or exploit code
 - Impact of the issue, including how an attacker might exploit the issue
 
 After receiving your report, we will evaluate your report as soon as possible and notify you of the results. Bug fixes depend on the bug itself, and we will try to fix bugs as quickly as possible.

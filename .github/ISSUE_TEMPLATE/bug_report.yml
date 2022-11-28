@@ -1,6 +1,14 @@
 name: 🐛 Bug report
 description: Create a report to help us improve
 body:
+  - type: markdown
+    attributes:
+    attributes:
+      value: Thank you for your report.
+  - type: input
+    attributes:
+      label: Version
+      description: Code version.
   - type: textarea
     attributes:
       label: Describe the bug
@@ -15,10 +23,6 @@ body:
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
-  - type: textarea
-    attributes:
-      label: Screenshots
-      description: If applicable, add screenshots to help explain your problem.
   - type: textarea
     attributes:
       label: Additional context

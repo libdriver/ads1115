@@ -1,11 +1,11 @@
 name: 📄 Documentation problem
-description: Report documentation problems
+description: Report a documentation problem
 labels: [documentation problem]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting documentation problems to make LibDriver better.
+        Thank you for reporting the documentation problem to make LibDriver better.
         
         Please fill in as much of the following form as you're able.
   - type: input
@@ -15,7 +15,7 @@ body:
   - type: textarea
     attributes:
       label: Description of the problem
-      description: A clear and concise description of documentation problems.
+      description: A clear and concise description of the documentation problem.
   - type: textarea
     attributes:
       label: Please give your suggestion
@@ -23,4 +23,4 @@ body:
   - type: textarea
     attributes:
       label: Additional context
-      description:  Add any other context about documentation problems here.
+      description:  Add any other context about the documentation problem here.

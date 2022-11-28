@@ -1,11 +1,12 @@
 name: 🐛 Bug report
 description: Create a report to help us improve
+labels: [bug report]
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for your report.
-        
+
         Please fill in as much of the following form as you're able.
   - type: input
     attributes:

@@ -1,5 +1,6 @@
 name: 📄 Documentation problem
 description: Report documentation problems
+labels: [documentation problem]
 body:
   - type: markdown
     attributes:

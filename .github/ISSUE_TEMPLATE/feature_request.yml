@@ -1,11 +1,12 @@
 name: 🚀 Feature request
 description: Suggest an idea for this project
+labels: [feature request]
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for suggesting an idea to make LibDriver better.
-        
+
         Please fill in as much of the following form as you're able.
   - type: textarea
     attributes:
@@ -22,4 +23,4 @@ body:
   - type: textarea
     attributes:
       label: Additional context
-      description: Add any other context or screenshots about the feature request here.
+      description: Add any other context about the feature request here.

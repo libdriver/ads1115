@@ -6,7 +6,7 @@ LibDriver takes the security of our code seriously.If you believe you have found
 
 LibDriver is generally backwards compatible with very few exceptions, so we recommend users to always use the latest version to experience stability, performance and security.
 
-**Please do not report security vulnerabilities through public GitHub issues.**
+**Please do not report security vulnerabilities through public issues.**
 
 Instead, please send an email to lishifenging@outlook.com. You should receive a response within 24 hours. If for some reason you do not, please send again to ensure we received your original message. If your report was previously undisclosed, we’ll also mention your name in the credits. 
 

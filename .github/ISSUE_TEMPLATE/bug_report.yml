@@ -5,7 +5,7 @@ body:
     attributes:
       value: |
         Thank you for your report.
-        This issue tracker is for bugs and issues.
+        
         Please fill in as much of the following form as you're able.
   - type: input
     attributes:

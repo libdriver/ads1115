@@ -5,6 +5,7 @@ body:
     attributes:
       value: |
         Thank you for suggesting an idea to make LibDriver better.
+        
         Please fill in as much of the following form as you're able.
   - type: textarea
     attributes:

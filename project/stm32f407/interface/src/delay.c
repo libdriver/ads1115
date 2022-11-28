@@ -25,7 +25,7 @@
  * @brief     delay source file
  * @version   1.0.0
  * @author    Shifeng Li
- * @date      2021-2-12
+ * @date      2021-02-12
  *
  * <h3>history</h3>
  * <table>
@@ -65,7 +65,7 @@ void delay_us(uint32_t us)
     uint32_t reload = SysTick->LOAD;
     ticks = us * gs_fac_us;
     told = SysTick->VAL;
-        
+    
     while(1)
     {
         tnow = SysTick->VAL;

@@ -25,7 +25,7 @@
  * @brief     uart header file
  * @version   1.0.0
  * @author    Shifeng Li
- * @date      2021-2-12
+ * @date      2021-02-12
  *
  * <h3>history</h3>
  * <table>
@@ -106,9 +106,7 @@ uint8_t uart1_write(uint8_t *buf, uint16_t len);
  * @brief      uart1 read data
  * @param[out] *buf points to a data buffer
  * @param[in]  len is the data length
- * @return     status code
- *             - 0 success
- *             - 1 read failed
+ * @return     length of read data
  * @note       this function will clear all received buffer even read length is less than received length
  */
 uint16_t uart1_read(uint8_t *buf, uint16_t len);
@@ -162,9 +160,7 @@ uint8_t uart2_write(uint8_t *buf, uint16_t len);
  * @brief      uart2 read data
  * @param[out] *buf points to a data buffer
  * @param[in]  len is the data length
- * @return     status code
- *             - 0 success
- *             - 1 read failed
+ * @return     length of read data
  * @note       this function will clear all received buffer even read length is less than received length
  */
 uint16_t uart2_read(uint8_t *buf, uint16_t len);

@@ -20,3 +20,7 @@ body:
     attributes:
       label: Please give your suggestion
       description: Please tell us how you would like to improve this documentation.
+  - type: textarea
+    attributes:
+      label: Additional context
+      description:  Add any other context about documentation problems here.

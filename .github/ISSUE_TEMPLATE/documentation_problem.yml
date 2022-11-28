@@ -1,0 +1,21 @@
+name: 📄 Documentation problem
+description: Report documentation problems
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting documentation problems to make LibDriver better.
+        
+        Please fill in as much of the following form as you're able.
+  - type: input
+    attributes:
+      label: Document Links
+      description: Please fill in the link of the online documentation or the path of the offline documentation.
+  - type: textarea
+    attributes:
+      label: Description of the problem
+      description: A clear and concise description of documentation problems.
+  - type: textarea
+    attributes:
+      label: Please give your suggestion
+      description: Please tell us how you would like to improve this documentation.

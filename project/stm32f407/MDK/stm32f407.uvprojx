@@ -10,8 +10,9 @@
       <TargetName>stm32f407</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::.\ARMCC</pCCUsed>
-      <uAC6>0</uAC6>
+      <pArmCC>6140000::V6.14::ARMCLANG</pArmCC>
+      <pCCUsed>6140000::V6.14::ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F407ZGTx</Device>
@@ -322,7 +323,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>3</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -484,9 +485,9 @@
               <FilePath>..\interface\src\delay.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
+              <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\interface\src\uart.c</FilePath>
+              <FilePath>..\interface\src\gpio.c</FilePath>
             </File>
             <File>
               <FileName>iic.c</FileName>
@@ -494,9 +495,24 @@
               <FilePath>..\interface\src\iic.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.c</FileName>
+              <FileName>sdio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\interface\src\gpio.c</FilePath>
+              <FilePath>..\interface\src\sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\interface\src\spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\interface\src\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>wire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\interface\src\wire.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -627,6 +643,16 @@
               <FileName>stm32f4xx_hal_fmpi2c_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\hal\src\stm32f4xx_hal_fmpi2c_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_fmpsmbus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hal\src\stm32f4xx_hal_fmpsmbus.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_fmpsmbus_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hal\src\stm32f4xx_hal_fmpsmbus_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_hal_gpio.c</FileName>
@@ -867,6 +893,11 @@
               <FileName>stm32f4xx_ll_fmc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\hal\src\stm32f4xx_ll_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ll_fmpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hal\src\stm32f4xx_ll_fmpi2c.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_ll_fsmc.c</FileName>

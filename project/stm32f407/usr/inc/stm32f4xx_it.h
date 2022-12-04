@@ -25,17 +25,17 @@
  * @brief     stm32f4xx it header file
  * @version   1.0.0
  * @author    Shifeng Li
- * @date      2021-2-12
+ * @date      2022-11-11
  *
  * <h3>history</h3>
  * <table>
  * <tr><th>Date        <th>Version  <th>Author      <th>Description
- * <tr><td>2021/02/12  <td>1.0      <td>Shifeng Li  <td>first upload
+ * <tr><td>2022/11/11  <td>1.0      <td>Shifeng Li  <td>first upload
  * </table>
  */
 
-#ifndef _STM32F4xx_IT_H_
-#define _STM32F4xx_IT_H_
+#ifndef STM32F4XX_IT_H
+#define STM32F4XX_IT_H
 
 #include "stm32f4xx_hal.h"
 
@@ -44,7 +44,7 @@
 #endif 
 
 /** 
- * @defgroup it HAL_IT_Private_Functions
+ * @defgroup IT HAL_IT_Private_Functions
  * @{
  */
 
@@ -113,6 +113,24 @@ void USART1_IRQHandler(void);
  * @note  none
  */
 void USART2_IRQHandler(void);
+
+/**
+ * @brief dma2 stream6 irq handler
+ * @note  none
+ */
+void DMA2_Stream6_IRQHandler(void);
+
+/**
+ * @brief dma2 stream3 irq handler
+ * @note  none
+ */
+void DMA2_Stream3_IRQHandler(void);
+
+/**
+ * @brief sd irq handler
+ * @note  none
+ */
+void SDMMC1_IRQHandler(void);
 
 /**
  * @}

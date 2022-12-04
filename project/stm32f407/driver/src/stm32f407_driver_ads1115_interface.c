@@ -124,5 +124,5 @@ void ads1115_interface_debug_print(const char *const fmt, ...)
     va_end(args);
         
     len = strlen((char *)str);
-    (void)uart1_write((uint8_t *)str, len);
+    (void)uart_write((uint8_t *)str, len);
 }

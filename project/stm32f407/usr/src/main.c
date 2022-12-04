@@ -51,9 +51,9 @@
 /**
  * @brief global var definition
  */
-uint8_t g_buf[256];        /**< uart buffer */
-uint16_t g_len;            /**< uart buffer length */
-uint8_t g_flag;            /**< interrupt flag */
+uint8_t g_buf[256];             /**< uart buffer */
+volatile uint16_t g_len;        /**< uart buffer length */
+volatile uint8_t g_flag;        /**< interrupt flag */
 
 /**
  * @brief exti 0 irq
@@ -127,7 +127,6 @@ uint8_t ads1115(uint8_t argc, char **argv)
             /* show ads1115 help */
 
             help:
-
             ads1115_interface_debug_print("ads1115 -i\n\tshow ads1115 chip and driver information.\n");
             ads1115_interface_debug_print("ads1115 -h\n\tshow ads1115 help.\n");
             ads1115_interface_debug_print("ads1115 -p\n\tshow ads1115 pin connections of the current board.\n");
@@ -905,19 +904,19 @@ int main(void)
     /* delay init */
     delay_init();
 
-    /* uart1 init */
-    uart1_init(115200);
+    /* uart init */
+    uart_init(115200);
 
     /* shell init && register ads1115 fuction */
     shell_init();
     shell_register("ads1115", ads1115);
-    uart1_print("ads1115: welcome to libdriver ads1115.\n");
-
+    uart_print("ads1115: welcome to libdriver ads1115.\n");
+    
     while (1)
     {
         /* read uart */
-        g_len = uart1_read(g_buf, 256);
-        if (g_len)
+        g_len = uart_read(g_buf, 256);
+        if (g_len != 0)
         {
             /* run shell */
             res = shell_parse((char *)g_buf, g_len);
@@ -927,29 +926,29 @@ int main(void)
             }
             else if (res == 1)
             {
-                uart1_print("ads1115: run failed.\n");
+                uart_print("ads1115: run failed.\n");
             }
             else if (res == 2)
             {
-                uart1_print("ads1115: unknow command.\n");
+                uart_print("ads1115: unknow command.\n");
             }
             else if (res == 3)
             {
-                uart1_print("ads1115: length is too long.\n");
+                uart_print("ads1115: length is too long.\n");
             }
             else if (res == 4)
             {
-                uart1_print("ads1115: pretreat failed.\n");
+                uart_print("ads1115: pretreat failed.\n");
             }
             else if (res == 5)
             {
-                uart1_print("ads1115: param is invalid.\n");
+                uart_print("ads1115: param is invalid.\n");
             }
             else
             {
-                uart1_print("ads1115: unknow status code.\n");
+                uart_print("ads1115: unknow status code.\n");
             }
-            uart1_flush();
+            uart_flush();
         }
         delay_ms(100);
     }

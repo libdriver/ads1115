@@ -25,17 +25,18 @@
  * @brief     stm32f4xx it source file
  * @version   1.0.0
  * @author    Shifeng Li
- * @date      2021-2-12
+ * @date      2022-11-11
  *
  * <h3>history</h3>
  * <table>
  * <tr><th>Date        <th>Version  <th>Author      <th>Description
- * <tr><td>2021/02/12  <td>1.0      <td>Shifeng Li  <td>first upload
+ * <tr><td>2022/11/11  <td>1.0      <td>Shifeng Li  <td>first upload
  * </table>
  */
 
-#include "uart.h"
 #include "stm32f4xx_it.h"
+#include "sdio.h"
+#include "uart.h"
 
 /**
  * @brief nmi handler
@@ -53,7 +54,7 @@ void NMI_Handler(void)
  */
 void HardFault_Handler(void)
 {
-  /* Go to infinite loop when Hard Fault exception occurs */
+  /* go to infinite loop when hard fault exception occurs */
   while (1)
   {
       
@@ -66,7 +67,7 @@ void HardFault_Handler(void)
  */
 void MemManage_Handler(void)
 {
-  /* Go to infinite loop when Memory Manage exception occurs */
+  /* go to infinite loop when memory manage exception occurs */
   while (1)
   {
       
@@ -79,7 +80,7 @@ void MemManage_Handler(void)
  */
 void BusFault_Handler(void)
 {
-  /* Go to infinite loop when Bus Fault exception occurs */
+  /* go to infinite loop when bus fault exception occurs */
   while (1)
   {
       
@@ -92,7 +93,7 @@ void BusFault_Handler(void)
  */
 void UsageFault_Handler(void)
 {
-  /* Go to infinite loop when Usage Fault exception occurs */
+  /* go to infinite loop when usage fault exception occurs */
   while (1)
   {
       
@@ -152,7 +153,7 @@ void HAL_SYSTICK_Callback(void)
  */
 void USART1_IRQHandler(void)
 {
-    HAL_UART_IRQHandler(&g_uart1_handle);
+    HAL_UART_IRQHandler(uart_get_handle());
 }  
 
 /**
@@ -161,8 +162,8 @@ void USART1_IRQHandler(void)
  */
 void USART2_IRQHandler(void)
 {
-    HAL_UART_IRQHandler(&g_uart2_handle);
-}  
+    HAL_UART_IRQHandler(uart2_get_handle());
+}
 
 /**
  * @brief     uart error callback
@@ -175,7 +176,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 }
 
 /**
- * @brief     uart rx received callback
+ * @brief     uart rx receive callback
  * @param[in] *huart points to a uart handle
  * @note      none
  */
@@ -183,23 +184,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {    
     if (huart->Instance == USART1)
     {
-        g_uart1_rx_buffer[g_uart1_point] = g_uart1_buffer;
-        g_uart1_point++;
-        if (g_uart1_point > (UART1_MAX_LEN-1))
-        {
-            g_uart1_point = 0;
-        }
-        HAL_UART_Receive_IT(&g_uart1_handle, (uint8_t *)&g_uart1_buffer, 1);
+        /* run the uart irq handler */
+        uart_irq_handler();
     }
     if (huart->Instance == USART2)
     {
-        g_uart2_rx_buffer[g_uart2_point] = g_uart2_buffer;
-        g_uart2_point++;
-        if (g_uart2_point > (UART1_MAX_LEN-1))
-        {
-            g_uart2_point = 0;
-        }
-        HAL_UART_Receive_IT(&g_uart2_handle, (uint8_t *)&g_uart2_buffer, 1);
+        /* run the uart2 irq handler */
+        uart2_irq_handler();
     }
 }
 
@@ -212,10 +203,61 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
     {
-        g_uart1_tx_done = 1;
+        /* set tx done */
+        uart_set_tx_done();
     }
     if (huart->Instance == USART2)
     {
-        g_uart2_tx_done = 1;
+        /* set tx done */
+        uart2_set_tx_done();
     }
+}
+
+/**
+ * @brief dma2 stream6 irq handler
+ * @note  none
+ */
+void DMA2_Stream6_IRQHandler(void)
+{
+    HAL_DMA_IRQHandler(sdio_get_handle()->hdmatx);
+}
+
+/**
+ * @brief dma2 stream3 irq handler
+ * @note  none
+ */
+void DMA2_Stream3_IRQHandler(void)
+{
+    HAL_DMA_IRQHandler(sdio_get_handle()->hdmarx);
+}
+
+/**
+ * @brief sd irq handler
+ * @note  none
+ */
+void SDMMC1_IRQHandler(void)
+{
+    HAL_SD_IRQHandler(sdio_get_handle());
+}
+
+/**
+ * @brief     sd tx complete callback
+ * @param[in] *hsd points to a sd handle
+ * @note      none
+ */
+void HAL_SD_TxCpltCallback(SD_HandleTypeDef *hsd)
+{
+    /* st tx done */
+    sdio_set_tx_done();
+}
+
+/**
+ * @brief     sd rx complete callback
+ * @param[in] *hsd points to a sd handle
+ * @note      none
+ */
+void HAL_SD_RxCpltCallback(SD_HandleTypeDef *hsd)
+{
+    /* set rx done */
+    sdio_set_rx_done();
 }

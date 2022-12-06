@@ -29,9 +29,6 @@ The LibDriver has a [Code of Conduct](/CODE_OF_CONDUCT.md) to which all contribu
 
 All code needs to follow the LibDriver code style, and its content is as follows:
 
-------
-
-
 1. Include <stdint.h> and use int8_t, uint8_t, int16_t, uint16_t, int32_t and uint32_t instead of int and long, etc., float, double, char unchanged.
 
 2. For pointer variables, put the * side close to the variable, such as uint8_t *p.
@@ -223,8 +220,6 @@ All code needs to follow the LibDriver code style, and its content is as follows
 ### MISRA Compliant
 
 All driver sources, tests and examples must be MISRA compliant and need to be scanned with at least one software tool that claims to check code for "MISRA conformance".The scan report needs to be saved  to \misra. LibDriver uses the MISRA C:2012 specification standard, and its content is as follows:
-
-------
 
 Dir 1.1 Any implementation-defined behaviour on which the output of the program depends shall be documented and understood
 
@@ -1178,13 +1173,9 @@ Rule 22.6 The value of a pointer to a FILE shall not be used after the associate
 
 Category Mandatory
 
-------
-
 ### Comment Style
 
 All code needs to be commented, and the comment style is as follows:
-
-------
 
 1. Comments must be in English.
 
@@ -1310,10 +1301,6 @@ All code needs to be commented, and the comment style is as follows:
 ### Makefile Style
 
 Makefile needs to follow the LibDriver Makefile style, and its content is as follows:
-
-
-------
-
 
 1. Each Makefile must contain copyright information.
 
@@ -1521,9 +1508,6 @@ Makefile needs to follow the LibDriver Makefile style, and its content is as fol
 ### CMake Style
 
 CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as follows:
-
-------
-
 
 1. Each CMakeLists.txt must contain copyright information.
 

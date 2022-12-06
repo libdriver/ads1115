@@ -35,7 +35,6 @@
  */
 
 #include "stm32f4xx_it.h"
-#include "sdio.h"
 #include "uart.h"
 
 /**
@@ -211,53 +210,4 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
         /* set tx done */
         uart2_set_tx_done();
     }
-}
-
-/**
- * @brief dma2 stream6 irq handler
- * @note  none
- */
-void DMA2_Stream6_IRQHandler(void)
-{
-    HAL_DMA_IRQHandler(sdio_get_handle()->hdmatx);
-}
-
-/**
- * @brief dma2 stream3 irq handler
- * @note  none
- */
-void DMA2_Stream3_IRQHandler(void)
-{
-    HAL_DMA_IRQHandler(sdio_get_handle()->hdmarx);
-}
-
-/**
- * @brief sd irq handler
- * @note  none
- */
-void SDMMC1_IRQHandler(void)
-{
-    HAL_SD_IRQHandler(sdio_get_handle());
-}
-
-/**
- * @brief     sd tx complete callback
- * @param[in] *hsd points to a sd handle
- * @note      none
- */
-void HAL_SD_TxCpltCallback(SD_HandleTypeDef *hsd)
-{
-    /* st tx done */
-    sdio_set_tx_done();
-}
-
-/**
- * @brief     sd rx complete callback
- * @param[in] *hsd points to a sd handle
- * @note      none
- */
-void HAL_SD_RxCpltCallback(SD_HandleTypeDef *hsd)
-{
-    /* set rx done */
-    sdio_set_rx_done();
 }

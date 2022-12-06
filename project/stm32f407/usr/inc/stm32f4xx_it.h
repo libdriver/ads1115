@@ -115,24 +115,6 @@ void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
 
 /**
- * @brief dma2 stream6 irq handler
- * @note  none
- */
-void DMA2_Stream6_IRQHandler(void);
-
-/**
- * @brief dma2 stream3 irq handler
- * @note  none
- */
-void DMA2_Stream3_IRQHandler(void);
-
-/**
- * @brief sd irq handler
- * @note  none
- */
-void SDMMC1_IRQHandler(void);
-
-/**
  * @}
  */
 

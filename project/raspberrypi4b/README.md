@@ -1,8 +1,8 @@
-### 1. Chip
+### 1. Board
 
-#### 1.1 Chip Info
+#### 1.1 Board Info
 
-chip name : Raspberry Pi 4B.
+board name : Raspberry Pi 4B.
 
 iic pin: SCL/SDA GPIO3/GPIO2.
 
@@ -78,29 +78,25 @@ find_package(ads1115 REQUIRED)
 
 ​          ads1115 is a basic command which can test all ads1115 driver function:
 
-​           -i         show ads1115 chip and driver information.
+​          ads1115 (-i | --information)        show ads1115 chip and driver information.
 
-​           -h        show ads1115 help.
+​          ads1115 (-h | --help)        show ads1115 help.
 
-​           -p        show ads1115 pin connections of the current board.
+​          ads1115 (-p | --port)        show ads1115 pin connections of the current board.
 
-​           -t  (reg -a (VCC | GND | SCL | SDA) | read <times> -a (VCC | GND | SCL | SDA) |muti <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) | int <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -th <low_threshold> <high_threshold>)
+​          ads1115 (-t reg | --test=reg) [--addr=<VCC | GND | SCL | SDA>]        run ads1115 register test. 
 
-​           -t reg -a (VCC | GND | SCL | SDA)        run ads1115 register test. 
+​          ads1115 (-t read | --test=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>]        run ads1115 read test. num means test times.
 
-​           -t read <times> -a (VCC | GND | SCL | SDA)        run ads1115 read test. times means test times.
+​          ads1115 (-t muti | --test=muti) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]         run ads1115 mutichannel test.num means test times.
 
-​           -t muti <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)        run ads1115 mutichannel test.times means test times.
+​          ads1115 (-t int | --test=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--low-threshold=<low>] [--high-threshold=<high>]        run ads1115 interrupt test.num means test times.low and high means the interrupt threshold.
 
-​            -t int <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -th <low_threshold> <high_threshold>        run ads1115 interrupt test.times means test times.low_threshold and high_threshold means interrupt threshold.
+​          ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]        run ads1115 read function.num means read times.
 
-​            -c (read <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)  | shot <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)  | int  <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)  -m (THRESHOLD | WINDOW) -th <low_threshold> <high_threshold>)
+​          ads1115 (-e shot | --example shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]         run ads1115 shot function.num means read times.
 
-​            -c read <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)        run ads1115 read function.times means read times.
-
-​            -c shot  <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)        run ads1115 shot function.times means read times.
-
-​            -c  int  <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -m (THRESHOLD | WINDOW) -th <low_threshold> <high_threshold>       run ads1115 interrupt function. times means read times.low_threshold and high_threshold means interrupt threshold.
+​          ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]        run ads1115 interrupt function. num means read times.low and high means the interrupt threshold.
 
 #### 3.2 Command Example
 
@@ -127,7 +123,7 @@ ads1115: INT connected to GPIO17(BCM).
 ```
 
 ```shell
-./ads1115 -t reg -a GND
+./ads1115 -t reg --addr=GND 
 
 ads1115: chip is Texas Instruments ADS1115.
 ads1115: manufacturer is Texas Instruments.
@@ -215,7 +211,7 @@ ads1115: check comparator queue ok.
 ads1115: set comparator queue 4 conv.
 ads1115: check comparator queue ok.
 ads1115: ads1115_set_compare_threshold/ads1115_get_compare_threshold test.
-ads1115: set high threshold 6424 low threshold -5007.
+ads1115: set high threshold 5551 low threshold -5422.
 ads1115: check high threshold ok.
 ads1115: check low threshold ok.
 ads1115: ads1115_set_compare/ads1115_get_compare test.
@@ -224,24 +220,24 @@ ads1115: check compare ok.
 ads1115: disable compare.
 ads1115: check compare ok.
 ads1115: ads1115_convert_to_register test.
-ads1115: convert to register -0.84V.
+ads1115: convert to register -0.10V.
 ads1115: check convert to register ok.
-ads1115: convert to register 2.15V.
+ads1115: convert to register 2.16V.
 ads1115: check convert to register ok.
-ads1115: convert to register -1.29V.
+ads1115: convert to register -1.11V.
 ads1115: check convert to register ok.
-ads1115: convert to register 0.84V.
+ads1115: convert to register 0.25V.
 ads1115: check convert to register ok.
-ads1115: convert to register -0.46V.
+ads1115: convert to register -0.07V.
 ads1115: check convert to register ok.
-ads1115: convert to register 0.13V.
-ads1115: check convert to register 16256.
-ads1115: convert to data 0.13V.
+ads1115: convert to register 0.24V.
+ads1115: check convert to register 30207.
+ads1115: convert to data 0.24V.
 ads1115: finish register test.
 ```
 
 ```shell
-./ads1115 -t read 3 -a GND
+./ads1115 -t read --times=3 --addr=GND
 
 ads1115: chip is Texas Instruments ADS1115.
 ads1115: manufacturer is Texas Instruments.
@@ -255,18 +251,18 @@ ads1115: min temperature is -40.0C.
 ads1115: start read test.
 ads1115: AIN0 to GND.
 ads1115: continuous read test.
-ads1115: 1 continus mode 0.608V.
-ads1115: 2 continus mode 0.607V.
-ads1115: 3 continus mode 0.608V.
+ads1115: 1 continus mode 0.574V.
+ads1115: 2 continus mode 0.592V.
+ads1115: 3 continus mode 0.590V.
 ads1115: single read test.
-ads1115: 1 single mode 0.607V.
-ads1115: 2 single mode 0.607V.
-ads1115: 3 single mode 0.604V.
+ads1115: 1 single mode 0.582V.
+ads1115: 2 single mode 0.578V.
+ads1115: 3 single mode 0.573V.
 ads1115: finish read test.
 ```
 
 ```shell
-./ads1115 -t muti 3 -a GND -ch AIN0_GND
+./ads1115 -t muti --times=3 --addr=GND --channel=AIN0_GND
 
 ads1115: chip is Texas Instruments ADS1115.
 ads1115: manufacturer is Texas Instruments.
@@ -278,14 +274,14 @@ ads1115: max current is 0.20mA.
 ads1115: max temperature is 125.0C.
 ads1115: min temperature is -40.0C.
 ads1115: start multichannel test.
-ads1115: 1 3.291V.
-ads1115: 2 3.291V.
-ads1115: 3 3.291V.
+ads1115: 3.288V.
+ads1115: 3.288V.
+ads1115: 3.288V.
 ads1115: finish multichannel test.
 ```
 
 ```shell
-./ads1115 -t int 3 -a GND -ch AIN0_GND -m THRESHOLD -th 1.1 2.5
+./ads1115 -t int --times=3 --addr=GND --channel=AIN0_GND --low-threshold=1.1 --high-threshold=2.5
 
 ads1115: chip is Texas Instruments ADS1115.
 ads1115: manufacturer is Texas Instruments.
@@ -307,56 +303,70 @@ ads1115: finish compare mode test.
 ```
 
 ```shell
-./ads1115 -c read 3 -a GND -ch AIN0_GND
+./ads1115 -e read --times=3 --addr=GND --channel=AIN0_GND
 
 ads1115: 1/3.
-ads1115: adc is 3.2906V.
+ads1115: adc is 3.2882V.
 ads1115: 2/3.
-ads1115: adc is 3.2906V.
+ads1115: adc is 3.2878V.
 ads1115: 3/3.
-ads1115: adc is 3.2908V.
+ads1115: adc is 3.2878V.
 ```
 
 ```shell
-./ads1115 -c shot 3 -a GND -ch AIN0_GND
+./ads1115 -e shot --times=3 --addr=GND --channel=AIN0_GND
 
 ads1115: 1/3.
-ads1115: adc is 3.2908V.
+ads1115: adc is 3.2880V.
 ads1115: 2/3.
-ads1115: adc is 3.2908V.
+ads1115: adc is 3.2878V.
 ads1115: 3/3.
-ads1115: adc is 3.2908V.
+ads1115: adc is 3.2880V.
 ```
 
 ```shell
-./ads1115 -c int 3 -a GND -ch AIN0_GND -m THRESHOLD -th 1.1 2.5
+./ads1115 -e int --times=3 --addr=GND --channel=AIN0_GND --mode=THRESHOLD --low-threshold=1.1 --high-threshold=2.5
 
 ads1115: 1/3.
-ads1115: read is 3.2903V.
-ads1115: find interrupt
+ads1115: read is 3.2880V.
+ads1115: find interrupt.
 ```
 
 ```shell
 ./ads1115 -h
 
-ads1115 -i
-	show ads1115 chip and driver information.
-ads1115 -h
-	show ads1115 help.
-ads1115 -p
-	show ads1115 pin connections of the current board.
-ads1115 -t reg -a (VCC | GND | SCL | SDA)
-	run ads1115 register test.times means test times.
-ads1115 -t read <times> -a (VCC | GND | SCL | SDA)
-	run ads1115 read test.times means test times.
-ads1115 -t muti <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)
-	run ads1115 mutichannel test.times means test times.
-ads1115 -t int <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -th <low_threshold> <high_threshold>
-	run ads1115 interrupt test.times means test times.low_threshold and high_threshold means interrupt threshold.
-ads1115 -c read <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)
-	run ads1115 read function.times means read times.
-ads1115 -c shot <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND)
-	run ads1115 shot function.times means read times.
-ads1115 -c int <times> -a (VCC | GND | SCL | SDA) -ch (AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND) -m (THRESHOLD | WINDOW) -th <low_threshold> <high_threshold>
-	run ads1115 interrupt function.times means read times.low_threshold and high_threshold means interrupt threshold.
+Usage:
+  ads1115 (-i | --information)
+  ads1115 (-h | --help)
+  ads1115 (-p | --port)
+  ads1115 (-t reg | --test=reg) [--addr=<VCC | GND | SCL | SDA>]
+  ads1115 (-t read | --test=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>]
+  ads1115 (-t muti | --test=muti) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]
+  ads1115 (-t int | --test=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] 
+          [--low-threshold=<low>] [--high-threshold=<high>]
+  ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]
+  ads1115 (-e shot | --example shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]
+  ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] 
+          [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]
+
+Options:
+      --addr==<VCC | GND | SCL | SDA>    Set the connection of the addr pin.([default: GND])
+      --channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>
+                                         Set the ADC channel.([default: AIN0_GND])
+  -e <read | shot | int>, --example=<read | shot | int>
+                                         Run the driver example.
+  -h, --help                             Show the help.
+      --high-threshold=<high>            Set the ADC interrupt high threshold.([default: 0.0f])
+  -i, --information                      Show the chip information.
+      --low-threshold=<low>              Set the ADC interrupt low threshold.([default: 0.0f])
+      --mode=<THRESHOLD | WINDOW>        Set the ADC interrupt mode.([default: THRESHOLD])
+  -p, --port                             Display the pins used by this device to connect the chip.
+  -t <reg | read | muti | int>, --test=<reg | read | muti | int>.
+                                         Run the driver test.
+      --times=<num>                      Set the running times.([default: 3])
 ```

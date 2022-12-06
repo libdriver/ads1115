@@ -395,6 +395,11 @@
               <FilePath>..\usr\src\shell.c</FilePath>
             </File>
             <File>
+              <FileName>getopt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\usr\src\getopt.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\usr\src\stm32f4xx_hal_msp.c</FilePath>
@@ -485,9 +490,9 @@
               <FilePath>..\interface\src\delay.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.c</FileName>
+              <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\interface\src\gpio.c</FilePath>
+              <FilePath>..\interface\src\uart.c</FilePath>
             </File>
             <File>
               <FileName>iic.c</FileName>
@@ -495,24 +500,9 @@
               <FilePath>..\interface\src\iic.c</FilePath>
             </File>
             <File>
-              <FileName>sdio.c</FileName>
+              <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\interface\src\sdio.c</FilePath>
-            </File>
-            <File>
-              <FileName>spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\interface\src\spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\interface\src\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>wire.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\interface\src\wire.c</FilePath>
+              <FilePath>..\interface\src\gpio.c</FilePath>
             </File>
           </Files>
         </Group>

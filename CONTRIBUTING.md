@@ -2007,7 +2007,7 @@ graph BT;
 
 2. The header section has only one line including three fields:  type(required),  scope(optional) and subject(required). If the type is feat and fix, the commit will definitely appear in CHANGLOG. 
 
-    "<type>" is used to describe the type of commit and only the following identifiers are allowed:
+    "type" is used to describe the type of commit and only the following identifiers are allowed:
 
     - feat - new features
     - fix - patch the vulnerability
@@ -2020,9 +2020,9 @@ graph BT;
     - build - package
     - revert - undo the last change
 
-    "<scope>" is used to illustrate the scope of commit influence, such as data layer, control layer, view layer and so on.
+    "scope" is used to illustrate the scope of commit influence, such as data layer, control layer, view layer and so on.
 
-    "<subject>" is a short description of the commit with no more than 50 characters. Start with a verb and use the first-person present tense (such as change, not changed or changes). The first letter is lowercase and there is no period at the end.
+    "subject" is a short description of the commit with no more than 50 characters. Start with a verb and use the first-person present tense (such as change, not changed or changes). The first letter is lowercase and there is no period at the end.
 
 3. The body part is a detailed description of this commit, which can be divided into multiple lines. It should explain the motivation for the code change and the comparison with previous behaviors.
 

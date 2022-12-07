@@ -2077,4 +2077,4 @@ All projects of LibDriver need to have a good structure. Each project should be 
 ### Documentation
 
 1. All drivers need to be annotated and generate the doxygen documentation.
-2. Each project needs to write detailed documentation, including but not limited to: pin connection, project compilation method and command line instructions, etc.
+2. Each project needs to write detailed documentation, including but not limited to: pin connection, project compilation method, command line instructions, etc.

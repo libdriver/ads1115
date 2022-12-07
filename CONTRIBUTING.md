@@ -23,45 +23,77 @@ The LibDriver has a [Code of Conduct](/CODE_OF_CONDUCT.md) to which all contribu
 
 ### Contributor License Agreement
 
+In order to clarify the intellectual property license granted with Contributions from any person or entity, LibDriver("LibDriver") must have a Contributor License Agreement ("CLA") on file that has been signed by each Contributor, indicating agreement to the license terms below. This license is for your protection as a Contributor as well as the protection of LibDriver; it does not change your rights to use your own Contributions for any other purpose.
+
+You accept and agree to the following terms and conditions for Your present and future Contributions submitted to LibDriver. Except for the license granted herein to LibDriver and recipients of software distributed by LibDriver, You reserve all right, title, and interest in and to Your Contributions.
+
+1. Definitions.
+
+   "You" (or "Your") shall mean the copyright owner or legal entity authorized by the copyright owner that is making this Agreement with LibDriver. For legal entities, the entity making a Contribution and all other entities that control, are controlled by, or are under common control with that entity are considered to be a single Contributor. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.
+
+   "Contribution" shall mean any original work of authorship, including any modifications or additions to an existing work, that is intentionally submitted by You to LibDriver for inclusion in, or documentation of, any of the products owned or managed by LibDriver (the "Work"). For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to LibDriver or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, LibDriver for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by You as "Not a Contribution."
+
+2. Grant of Copyright License. Subject to the terms and conditions of this Agreement, You hereby grant to LibDriver and to recipients of software distributed by LibDriver a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute Your Contributions and such derivative works.
+
+3. Grant of Patent License. Subject to the terms and conditions of this Agreement, You hereby grant to LibDriver and to recipients of software distributed by LibDriver a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by You that are necessarily infringed by Your Contribution(s) alone or by combination of Your Contribution(s) with the Work to which such Contribution(s) was submitted. If any entity institutes patent litigation against You or any other entity (including a cross-claim or counterclaim in a lawsuit) alleging that your Contribution, or the Work to which you have contributed, constitutes direct or contributory patent infringement, then any patent licenses granted to that entity under this Agreement for that Contribution or Work shall terminate as of the date such litigation is filed.
+
+4. You represent that you are legally entitled to grant the above license. If your employer(s) has rights to intellectual property that you create that includes your Contributions, you represent that you have received permission to make Contributions on behalf of that employer, that your employer has waived such rights for your Contributions to LibDriver, or that your employer has executed a separate Corporate CLA with LibDriver.
+
+5. You represent that each of Your Contributions is Your original creation (see section 7 for submissions on behalf of others). You represent that Your Contribution submissions include complete details of any third-party license or other restriction (including, but not limited to, related patents and trademarks) of which you are personally aware and which are associated with any part of Your Contributions.
+
+6. You are not expected to provide support for Your Contributions, except to the extent You desire to provide support. You may provide support for free, for a fee, or not at all. Unless required by applicable law or agreed to in writing, You provide Your Contributions on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON- INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE.
+
+7. Should You wish to submit work that is not Your original creation, You may submit it to LibDriver separately from any Contribution, identifying the complete details of its source and of any license or other restriction (including, but not limited to, related patents, trademarks, and license agreements) of which you are personally aware, and conspicuously marking the work as "Submitted on behalf of a third-party: [named here]".
+
+8. You agree to notify LibDriver of any facts or circumstances of which you become aware that would make these representations inaccurate in any respect.
+
 ### Design of Driver
+
+LibDriver adopts the separate design of driver and driver interface, the driver interface shields the differences of systems and hardwares and the driver provides a unified interface upward.
+
+```mermaid
+graph BT;
+    A[Interface]-->B[Driver];
+    B[Driver]-->C[User];
+```
 
 ### Code Style
 
-All code needs to follow the LibDriver code style, and its content is as follows:
+All code needs to follow the LibDriver code style and its content is as follows:
 
-1. Include <stdint.h> and use int8_t, uint8_t, int16_t, uint16_t, int32_t and uint32_t instead of int and long, etc., float, double, char unchanged.
+1. Include <stdint.h> and use int8_t, uint8_t, int16_t, uint16_t, int32_t and uint32_t instead of int and long. float, double and char are unchanged.
 
-2. For pointer variables, put the * side close to the variable, such as uint8_t *p.
+2. For pointer variables, put the * side close to the variable, such as "uint8_t *p".
 
-3. All functions and variables are named in lowercase, using the x_xx_xxx format, such as uint8_t set_config(uint8_t config). Function and variable naming rules are noun + verb + object.
+3. All functions and variables are named in lowercase using the "x_xx_xxx" format, such as "uint8_t set_config(uint8_t config)". Function and variable naming rules are noun + verb + object.
 
 4. Local variables are separated from the program line.
 
-5. Functions and {} of if, while, for, etc. each occupy a line, and each level of structure is separated by 4 spaces.
+5. {}, if, while, for, etc. each occupy a line and each level of structure is separated by four spaces.
 
-6. The program uses 1 tab distance between each level and uses 4 spaces instead of tabs.
+6. The program uses one tab distance between each level and uses four spaces instead of tab.
 
 7. Interrupt or exit statements such as return and break are separated from the program by one line.
 
-8. In a single program, the program can be divided into blocks according to functions, and each function block is separated by a line.
+8. In a single program, the program can be divided into blocks according to functions and each function block is separated by a line.
 
 9. Leave a blank line between each function.
 
-10. Add spaces between binary operation symbols =, +, -, /, >, <, >=, <=, ==, &, |, &&, ||, &=, |=, etc.
+10. Add a space between binary operation symbols =, +,  -,  /,  >,  <,  >=, <=,  ==, &,  |,  &&,  ||,  &=,  |=, etc.
 
-11. Each structure, enumeration, and macro definition has a blank line.
+11. Each structure, enumeration and macro definition has a blank line.
 
-12. The internal use of the file must use the static type and add "a_" before the function name to distinguish it from external functions, such as static uint8_t a_set_way(uint8_t way).
+12. The internal use of the file must use the static type and add "a_" before the function name to distinguish it from external functions, such as "static uint8_t a_set_way(uint8_t way)".
 
-13. The program design must include returning the execution result and judging the execution result to deal with the error.
+13. The program design must include the return execution result and judge the execution result to deal with the error.
 
 14. Macro definitions must be capitalized.
 
-15. The structure is uniformly named typedef struct xx_s()xx_t, and xx_t is uniformly used as the name.
+15. The structure is uniformly named "typedef struct xx_s()xx_t" and "xx_t" is uniformly used as the name.
 
-16. The enumeration is uniformly named typedef enum {}xx_t, and xx_t is uniformly used as the name.
+16. The enumeration is uniformly named "typedef enum {}xx_t" and "xx_t" is uniformly used as the name.
 
-17. The header file definition must use the following structure, pay attention to the XXX_H structure of all uppercase and macro definitions.
+17. The header file definition must use the following structure.
 
     ```c
     #ifndef XXX_H
@@ -78,7 +110,7 @@ All code needs to follow the LibDriver code style, and its content is as follows
     #endif
     ```
 
-18. When including a header file using the following format, the header file should be included before extern "C".
+18. The header file should be included before extern "C".
 
     ```c
     #ifndef XXX_H
@@ -97,31 +129,31 @@ All code needs to follow the LibDriver code style, and its content is as follows
     #endif
     ```
 
-19. Use <> for system headers and " " for users.
+19. Use <> for system headers and " "  for users headers.
 
-20. Define the length of the array, try to use the macro definition to express the length.
+20. Try to use the macro definition to express the length of array.
 
-21. Global variables and static variables need to be added in front of g_ and s_.
+21. Global variables and static variables need to be added in front of  "g_" and "s_".
 
-22. The unified format of macro definition function operation is XXXX (HANDLE, FUC), macro definitions and variables are all capitalized, and there are no underscores before and after.
+22. The unified format of macro definition function operation is "XXXX (HANDLE, FUC)", macro definitions and variables are all capitalized and there are no underscores before and after.
 
-23. Header files only contain external declarations and structures, do not expose internal information, and do not define variables in header files.
+23. Header files only contain external declarations and structures. Do not expose internal information and define variables in header files.
 
 24. Include only required references, redundant references should be removed.
 
 25. The program needs to be designed in layers. The header file can only include the lower-level program in the upper-level program. It is strictly forbidden for the lower-level program to include the upper-level program. If necessary, a public interface should be defined.
 
-26. Each .c file needs to have a .h counterpart with the same name.
+26. Each .c file needs to have an .h file counterpart with the same name.
 
 27. Header files prohibit circular dependencies.
 
-28. A header file must be self-contained, compile independently, and not depend on other header files.
+28. A header file must be self-contained and compile independently.
 
-29. The function can only be used by including the .h file, and the use of the function by extern is strictly prohibited.
+29. The function can only be used by including the .h file and the use of the function by extern is strictly prohibited.
 
 30. The program needs to be modularized and divided into multiple .c combinations.
 
-31. Contains multiple programs sorted by stability and ascending order.
+31. Including multiple headers should be sorted by stability and ascending order.
 
     ```c
     #include <a.h>
@@ -133,29 +165,29 @@ All code needs to follow the LibDriver code style, and its content is as follows
     #include <platform.h>
     ```
 
-32. A function only completes one function.
+32. A function should complete only one function.
 
 33. Duplicate code requires refinement of common function implementations.
 
-34. A single line should not be too long, no more than 128 characters, and a single function should not be too long. If it exceeds, it must be written in multiple lines, and a new line is divided at the low-priority operator. The operator is placed at the beginning of the new line, and the divided new line should be properly indented and matched with the previous line of code.
+34. A single line should not be too long, no more than 128 characters and a single function should not be too long. If it exceeds, it must be written in multiple lines and a new line is divided at the low-priority operator. The operator is placed at the beginning of a new line, the divided new line should be properly indented and matched with the previous line of code.
 
-35. Function nesting should not exceed 3 layers.
+35. Function nesting should not exceed three layers.
 
-36. For functions that can be called by multiple threads, the problem of multi-thread calling needs to be considered.
+36. For functions that can be called by multiple threads, multi-thread calling problem needs to be considered.
 
-37. The legality of function parameters is implemented by the calling function itself, and the return value is returned to the caller.
+37. The legality of function parameters is implemented by the calling function itself and the return value is returned to the caller.
 
 38. Unused variables, functions, etc. are deleted in time.
 
 39. Constants should be modified with const.
 
-40. Try to avoid using global variables and static variables in the function, and pay attention to volatile protection when optimizing with -O3.
+40. Try to avoid using global variables and static variables in the function and pay attention to add volatile to protect the program when optimizing with -O3.
 
 41. Check the validity of all non-parameter inputs, such as files, handle addresses, etc.
 
-42. Try not to exceed 5 function parameters, and use structures if there are more.
+42. Don't exceed five function parameters and use structures if there are more.
 
-43. Variable-length parameter functions cannot be used except printing functions.
+43. Variable length parameter functions cannot be used except printf function.
 
 44. In addition to common consensus abbreviations, function variables use full names whenever possible.
 
@@ -183,43 +215,41 @@ All code needs to follow the LibDriver code style, and its content is as follows
     temp: tmp
     ```
 
-45. .c and .h file commands are all lowercase.
+45. .c and .h names are all lowercase.
 
-46. Macro definitions do not start with an underscore.
+46. Macro definitions don't start with an underscore.
 
-47. Using an uninitialized value as an rvalue is strictly prohibited.
+47. Using an uninitialized value as an right value is strictly prohibited.
 
 48. Operations defined by macros must be enclosed in parentheses.
 
-49. There are too many macro definition operations, you need to use do{}while(0) to define.
+49. If there are too many macro definition operations, you need to use "do{}while(0)" to define.
 
 50. Array out of bounds is prohibited.
 
 51. Disable memory leaks.
 
-52. The else if statement must end with an else statement, and the switch statement must have a default branch.
+52. The else if statement must end with an else statement and the switch statement must have a default branch.
 
 53. Functions that are called many times or frequently are defined using inline.
 
 54. Comments should be placed above or to the right.
 
-55. Single-line variables cannot be assigned multiple values, and each line can only be assigned once.
+55. Single-line variables cannot be assigned multiple values and each line can only be assigned once.
 
-56. Unary operators do not add spaces.
+56. Unary operators don't add spaces.
 
-57. Assignment statements should not be written in statements such as if, nor should they be used as parameters.
+57. Assignment statements should not be written in statements such as if nor should they be used as parameters.
 
 58. Multivariate operations bracket each part.
 
-59. Make sure the strings are all NULL terminated.
+59. Make sure that the strings are all NULL terminated.
 
-60. Octal not allowed.
-
-61. Typedef enum, typedef struct xxx_handle_s need to be followed by a space.
+60. Octal is not allowed.
 
 ### MISRA Compliant
 
-All driver sources, tests and examples must be MISRA compliant and need to be scanned with at least one software tool that claims to check code for "MISRA conformance".The scan report needs to be saved  to \misra. LibDriver uses the MISRA C:2012 specification standard, and its content is as follows:
+All driver sources, tests and examples must be MISRA compliant and need to be scanned with at least one software tool that claims to check code for "MISRA conformance".The scan report needs to be saved  to \misra. LibDriver uses the MISRA C:2012 specification standard and its content is as follows:
 
 Dir 1.1 Any implementation-defined behaviour on which the output of the program depends shall be documented and understood
 
@@ -377,7 +407,7 @@ Category Advisory
 
 ------
 
-Rule 3.1 The character sequences /* an d // shall not be used within a comment
+Rule 3.1 The character sequences /* and // shall not be used within a comment
 
 Category Required
 
@@ -665,7 +695,7 @@ Category Required
 
 ------
 
-Rule 11.3 A cast shall not be performed between a pointer to object type and a pointer to a diff erent object type
+Rule 11.3 A cast shall not be performed between a pointer to object type and a pointer to a different object type
 
 Category Required
 
@@ -1061,7 +1091,7 @@ Category Required
 
 ------
 
-Rule 20.14 All #else, #elif and #endif preprocessor directives shall reside in the same file as the #if, #ifdef or #ifndef directive to which they are related
+Rule 20.14 All #else, #elif and #endif preprocessor directives shall reside in the same file as the #if,  #ifdef or #ifndef directive to which they are related
 
 Category Required
 
@@ -1175,7 +1205,7 @@ Category Mandatory
 
 ### Comment Style
 
-All code needs to be commented, and the comment style is as follows:
+All code needs to be commented and the comment style is as follows:
 
 1. Comments must be in English.
 
@@ -1192,7 +1222,7 @@ All code needs to be commented, and the comment style is as follows:
 
 4. @param[in], @param[out], @param[int, out] need to specify the direction of parameter passing, the format is parameter name + meaning of the parameter, if not, do not write.
 
-5. If there are several types of return values, write several return values. The format is the return value + meaning of the return value. If there is no return value, do not write.
+5. If there are several types of return values, write several return values. The format is return value + meaning of the return value. If there is no return value, do not write.
 
 6. Enumerations require @brief, and add /**< */ enumeration type description to the right of each enumeration.
 
@@ -1202,7 +1232,7 @@ All code needs to be commented, and the comment style is as follows:
 
 9. Macro definition requires @brief, and add /**< */ function description on the right.
 
-10. Functions need to be grouped with annotations, grouped by the following format, and subgrouped if necessary.
+10. Functions need to be grouped with annotations and subgrouped if necessary.
 
     ```c
     /**
@@ -1300,7 +1330,7 @@ All code needs to be commented, and the comment style is as follows:
 
 ### Makefile Style
 
-Makefile needs to follow the LibDriver Makefile style, and its content is as follows:
+Makefile needs to follow the LibDriver Makefile style and its content is as follows:
 
 1. Each Makefile must contain copyright information.
 
@@ -1372,7 +1402,7 @@ Makefile needs to follow the LibDriver Makefile style, and its content is as fol
    AR := ar
    ```
 
-7. Dependent libraries are prioritized to use pkg-config to discover and set the environment, and you can also directly set dependent libs and include header file directories.
+7. Dependent libraries are prioritized to use pkg-config to discover and set the environment and you can also directly set dependent libs and include header file directories.
 
    ```makefile
    # set the packages name
@@ -1428,7 +1458,7 @@ Makefile needs to follow the LibDriver Makefile style, and its content is as fol
            $(SRCS)
    ```
 
-9. Macro definitions are defined using DEFS, and compilation flags are defined using CFLAGS.
+9. Macro definitions are defined using DEFS and compilation flags are defined using CFLAGS.
 
    ```makefile
    # set the definitions
@@ -1442,7 +1472,7 @@ Makefile needs to follow the LibDriver Makefile style, and its content is as fol
 
 10. Any target needs to be protected by .PHONY.
 
-11. Application, dynamic library, and static library templates are as follows.
+11. Application, dynamic library and static library templates are as follows.
 
     ```makefile
     # set all .PHONY
@@ -1507,7 +1537,7 @@ Makefile needs to follow the LibDriver Makefile style, and its content is as fol
 
 ### CMake Style
 
-CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as follows:
+CMakeLists.txt needs to follow the LibDriver CMake style and its content is as follows:
 
 1. Each CMakeLists.txt must contain copyright information.
 
@@ -1543,7 +1573,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
 
 4. There should be a blank line between every two commands.
 
-5. The CMakeList.txt is placed in the root directory of the source code, and a cmake folder is created to store the VERSION, config.cmake.in and uninstall.cmake files.
+5. The CMakeList.txt is placed in the root directory of the source code and a cmake folder is created to store the VERSION, config.cmake.in and uninstall.cmake files.
 
 6. Each CMake project needs to create a compiled version file named VERSION under the cmake/ folder.
 
@@ -1551,7 +1581,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
    1.0.0
    ```
 
-7. Each project needs to include CMake minimum version requirements, project name (writing language), set version number, set C/C++ language standard, set compile flag and Debug or Release statement.
+7. Each project needs to include CMake minimum version requirements, set the project name (writing language), set the version number, set the C/C++ language standard, set the compile flag and set the debug or release statement.
 
    ```cmake
    # set the cmake minimum version
@@ -1597,7 +1627,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
    ```
 
-8. To include the reference library, you must first include CMakePackageConfigHelpers and add "find_package(PkgConfig REQUIRED)". After discovering the package command, you need to add all discovered INCLUDE_DIRS to the collection LIB_INC_DIRS, and all discovered LIBRARIES to the collection LIBS. 
+8. To include the reference library, you must first include CMakePackageConfigHelpers and add "find_package(PkgConfig REQUIRED)". After discovering the package command, you need to add all discovered INCLUDE_DIRS to the collection LIB_INC_DIRS and all discovered LIBRARIES to the collection LIBS. 
 
    ```cmake
    # include cmake package config helpers
@@ -1625,7 +1655,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
       )
    ```
 
-9. Define the CMake variable LIB_INC_DIRS as the directory of all found library header files, LIBS as the name directory of all found libraries, INC_DIRS as the directory of all header files required for compilation (need to include ${LIB_INC_DIRS}), INSTL_INCS as the name of all header files that need to be installed , SRCS is the collection of all source files, and MAIN is the collection of source files required to generate the program.
+9. Define the CMake variable LIB_INC_DIRS as the directory of all found library header files, LIBS as the name directory of all found libraries, INC_DIRS as the directory of all header files required for compilation (need to include ${LIB_INC_DIRS}), INSTL_INCS as the name of all header files that need to be installed , SRCS as the name of all source files required to generate libraries and MAIN as the collection of source files required to generate the program.
 
    ```cmake
    # include all library header directories
@@ -1672,7 +1702,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
        )
    ```
 
-10. The static library needs to set the version number, add _static at the end of the generation, and finally use the renaming function to name it.
+10. The static library needs to set the version number, add "_static" at the end of the generation, and finally use the renaming function to name it.
 
     ```cmake
     # enable output as a static library
@@ -1694,7 +1724,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
     set_target_properties(${CMAKE_PROJECT_NAME}_static PROPERTIES VERSION ${${CMAKE_PROJECT_NAME}_VERSION})
     ```
 
-11. The dynamic library needs to set the version number, set the PUBLIC_HEADER installation file and link library.
+11. The dynamic library needs to set the version number, set the PUBLIC_HEADER installation file and set the link libraries.
 
     ```cmake
     # enable output as a dynamic library
@@ -1727,7 +1757,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES VERSION ${${CMAKE_PROJECT_NAME}_VERSION})
     ```
 
-12. Executable programs needs to set up link libraries, etc.
+12. Executable programs needs to set up link libraries.
 
     ```cmake
     # enable the executable program
@@ -1752,7 +1782,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
     set_target_properties(${CMAKE_PROJECT_NAME}_exe PROPERTIES CLEAN_DIRECT_OUTPUT 1)  
     ```
 
-13. File installation needs to set header files, dynamic libraries, static libraries, and executable programs.
+13. File installation needs to set header files, dynamic libraries, static libraries and executable programs.
 
     ```cmake
     # install the binary
@@ -1799,7 +1829,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
             DESTINATION cmake
            )
     ```
-    The following config.cmake.in is a reference template. It needs to add find_package check, and the others do not need to be modified.
+    The following config.cmake.in is a reference template. It needs to add "find_package" check and the others do not need to be modified.
     ```cmake
     #
     # Copyright (c) 2015 - present XXX All rights reserved
@@ -1932,7 +1962,7 @@ CMakeLists.txt needs to follow the LibDriver CMake style, and its content is as 
     set_tests_properties(${CMAKE_PROJECT_NAME}_test_1 PROPERTIES PASS_REGULAR_EXPRESSION "\n")
     ```
 
-17. To package the installation program, you need to modify the contact information, modify the package description, set the CPU architecture and set dependent packages, etc.
+17. To package the installation program, you need to modify the contact information, modify the package description, set the CPU architecture and set the dependent packages.
 
     ```cmake
     # set the cpack package name
@@ -1989,11 +2019,11 @@ graph BT;
     ```shell
     <type>(<scope>): <subject>
     
-    # Skip a line
+    # skip a line
     
     <body>
     
-    # Skip a line
+    # skip a line
     
     ...
     
@@ -2003,7 +2033,7 @@ graph BT;
     
     ```
 
-    Among them, header is required, and body and footer can be omitted. Regardless of the section, no line should exceed 100 characters and this is to avoid the appearance of automatic line wrapping.
+    Among them, header is required and body and footer can be omitted. Regardless of the section, no line should exceed 100 characters and this is to avoid the appearance of automatic line wrapping.
 
 2. The header section has only one line including three fields:  type(required),  scope(optional) and subject(required). If the type is feat and fix, the commit will definitely appear in CHANGLOG. 
 
@@ -2024,7 +2054,7 @@ graph BT;
 
     "subject" is a short description of the commit with no more than 50 characters. Start with a verb and use the first-person present tense (such as change, not changed or changes). The first letter is lowercase and there is no period at the end.
 
-3. The body part is a detailed description of this commit, which can be divided into multiple lines. It should explain the motivation for the code change and the comparison with previous behaviors.
+3. The body part is a detailed description of this commit which can be divided into multiple lines. It should explain the motivation for the code change and the comparison with previous behaviors.
 
 4. The footer section is only used in three cases:
 
@@ -2034,8 +2064,17 @@ graph BT;
 
 ### Example
 
+All drivers need to provide complete examples including all functions of the chip.In the example, all chip configuration needs to use macro definition configuration.
+
 ### Unit Test
+
+Unit test is an important way to verify the quality of the driver and the unit test should include all functions test of the chip. (register read test, basic function test and advanced function test, etc.)
 
 ### Project
 
+All projects of LibDriver need to have a good structure. Each project should be built in the order of board support package, middleware and application structure.Every project should ensure stable operation under -O3 optimization. Each project should support command line debugging and running.
+
 ### Documentation
+
+1. All drivers need to be annotated and generate the doxygen documentation.
+2. Each project needs to write detailed documentation, including but not limited to: pin connection, project compilation method and command line instructions, etc.

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2015 - present LibDriver All rights reserved
- * 
+ *
  * The MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +19,7 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. 
+ * SOFTWARE.
  *
  * @file      uart.c
  * @brief     uart source file
@@ -44,7 +44,7 @@
  */
 UART_HandleTypeDef g_uart_handle;              /**< uart handle */
 uint8_t g_uart_rx_buffer[UART_MAX_LEN];        /**< uart rx buffer */
-volatile uint8_t g_uart_buffer;                /**< uart one buffer */
+uint8_t g_uart_buffer;                         /**< uart one buffer */
 volatile uint16_t g_uart_point;                /**< uart rx point */
 volatile uint8_t g_uart_tx_done;               /**< uart tx done flag */
 
@@ -53,7 +53,7 @@ volatile uint8_t g_uart_tx_done;               /**< uart tx done flag */
  */
 UART_HandleTypeDef g_uart2_handle;               /**< uart2 handle */
 uint8_t g_uart2_rx_buffer[UART2_MAX_LEN];        /**< uart2 rx buffer */
-volatile uint8_t g_uart2_buffer;                 /**< uart2 one buffer */
+uint8_t g_uart2_buffer;                          /**< uart2 one buffer */
 volatile uint16_t g_uart2_point;                 /**< uart2 rx point */
 volatile uint8_t g_uart2_tx_done;                /**< uart2 tx done flag */
 
@@ -75,19 +75,19 @@ uint8_t uart_init(uint32_t baud)
     g_uart_handle.Init.Mode = UART_MODE_TX_RX;
     g_uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
     g_uart_handle.Init.OverSampling = UART_OVERSAMPLING_16;
-    
+
     /* uart init */
     if (HAL_UART_Init(&g_uart_handle) != HAL_OK)
     {
         return 1;
     }
-    
+
     /* receive one byte */
     if (HAL_UART_Receive_IT(&g_uart_handle, (uint8_t *)&g_uart_buffer, 1) != HAL_OK)
     {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -105,7 +105,7 @@ uint8_t uart_deinit(void)
     {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -121,23 +121,23 @@ uint8_t uart_deinit(void)
 uint8_t uart_write(uint8_t *buf, uint16_t len)
 {
     uint16_t timeout = 1000;
-    
+
     /* set tx done 0 */
     g_uart_tx_done = 0;
-    
+
     /* transmit */
     if (HAL_UART_Transmit_IT(&g_uart_handle, (uint8_t *)buf, len) != HAL_OK)
     {
         return 1;
     }
-    
+
     /* wait for events */
     while ((g_uart_tx_done == 0) && (timeout != 0))
     {
         HAL_Delay(1);
         timeout--;
     }
-    
+
     /* check the timeout */
     if (timeout != 0)
     {
@@ -160,7 +160,7 @@ uint16_t uart_read(uint8_t *buf, uint16_t len)
 {
     uint16_t read_len;
     uint16_t g_uart_point_old;
-    
+
     /* check receiving */
     start:
     g_uart_point_old = g_uart_point;
@@ -169,14 +169,14 @@ uint16_t uart_read(uint8_t *buf, uint16_t len)
     {
         goto start;
     }
-    
+
     /* copy the data */
     read_len = (len < g_uart_point) ? len : g_uart_point;
     memcpy(buf, g_uart_rx_buffer, read_len);
-    
+
     /* clear the buffer */
     g_uart_point = 0;
-    
+
     return read_len;
 }
 
@@ -190,7 +190,7 @@ uint16_t uart_flush(void)
 {
     /* clear the buffer */
     g_uart_point = 0;
-    
+
     return 0;
 }
 
@@ -205,13 +205,13 @@ uint16_t uart_print(const char *const fmt, ...)
     char str[256];
     uint8_t len;
     va_list args;
-    
+
     /* print to the buffer */
-    memset((char *)str, 0, sizeof(char) * 256); 
+    memset((char *)str, 0, sizeof(char) * 256);
     va_start(args, fmt);
     vsnprintf((char *)str, 256, (char const *)fmt, args);
     va_end(args);
-    
+
     /* send the data */
     len = strlen((char *)str);
     if (uart_write((uint8_t *)str, len) != 0)
@@ -219,7 +219,7 @@ uint16_t uart_print(const char *const fmt, ...)
         return 0;
     }
     else
-    { 
+    {
         return len;
     }
 }
@@ -242,19 +242,19 @@ uint8_t uart2_init(uint32_t baud)
     g_uart2_handle.Init.Mode = UART_MODE_TX_RX;
     g_uart2_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
     g_uart2_handle.Init.OverSampling = UART_OVERSAMPLING_16;
-    
+
     /* uart init */
     if (HAL_UART_Init(&g_uart2_handle) != HAL_OK)
     {
         return 1;
     }
-    
+
     /* receive one byte */
     if (HAL_UART_Receive_IT(&g_uart2_handle, (uint8_t *)&g_uart2_buffer, 1) != HAL_OK)
     {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -272,7 +272,7 @@ uint8_t uart2_deinit(void)
     {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -288,23 +288,23 @@ uint8_t uart2_deinit(void)
 uint8_t uart2_write(uint8_t *buf, uint16_t len)
 {
     uint16_t timeout = 1000;
-    
+
     /* set tx done 0 */
     g_uart2_tx_done = 0;
-    
+
     /* transmit */
     if (HAL_UART_Transmit_IT(&g_uart2_handle, (uint8_t *)buf, len) != HAL_OK)
     {
         return 1;
     }
-    
+
     /* wait for events */
     while ((g_uart2_tx_done == 0) && (timeout != 0))
     {
         HAL_Delay(1);
         timeout--;
     }
-    
+
     /* check the timeout */
     if (timeout != 0)
     {
@@ -327,7 +327,7 @@ uint16_t uart2_read(uint8_t *buf, uint16_t len)
 {
     uint16_t read_len;
     uint16_t g_uart_point_old;
-    
+
     /* check receiving */
     start:
     g_uart_point_old = g_uart2_point;
@@ -336,14 +336,14 @@ uint16_t uart2_read(uint8_t *buf, uint16_t len)
     {
         goto start;
     }
-    
+
     /* copy the data */
     read_len = (len < g_uart2_point) ? len : g_uart2_point;
     memcpy(buf, g_uart2_rx_buffer, read_len);
-    
+
     /* clear the buffer */
     g_uart2_point = 0;
-    
+
     return read_len;
 }
 
@@ -357,7 +357,7 @@ uint16_t uart2_flush(void)
 {
     /* clear the buffer */
     g_uart2_point = 0;
-    
+
     return 0;
 }
 
@@ -412,7 +412,7 @@ void uart_irq_handler(void)
     {
         g_uart_point = 0;
     }
-    
+
     /* receive one byte */
     (void)HAL_UART_Receive_IT(&g_uart_handle, (uint8_t *)&g_uart_buffer, 1);
 }
@@ -430,7 +430,7 @@ void uart2_irq_handler(void)
     {
         g_uart2_point = 0;
     }
-    
+
     /* receive one byte */
     (void)HAL_UART_Receive_IT(&g_uart2_handle, (uint8_t *)&g_uart2_buffer, 1);
 }

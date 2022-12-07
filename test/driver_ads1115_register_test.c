@@ -91,7 +91,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         ads1115_interface_debug_print("ads1115: chip is %s.\n", info.chip_name);
         ads1115_interface_debug_print("ads1115: manufacturer is %s.\n", info.manufacturer_name);
         ads1115_interface_debug_print("ads1115: interface is %s.\n", info.interface);
-        ads1115_interface_debug_print("ads1115: driver version is %d.%d.\n", info.driver_version/1000, (info.driver_version%1000)/100);
+        ads1115_interface_debug_print("ads1115: driver version is %d.%d.\n", info.driver_version / 1000, (info.driver_version % 1000) / 100);
         ads1115_interface_debug_print("ads1115: min supply voltage is %0.1fV.\n", info.supply_voltage_min_v);
         ads1115_interface_debug_print("ads1115: max supply voltage is %0.1fV.\n", info.supply_voltage_max_v);
         ads1115_interface_debug_print("ads1115: max current is %0.2fmA.\n", info.max_current_ma);

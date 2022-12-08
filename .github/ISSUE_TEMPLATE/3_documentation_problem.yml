@@ -10,7 +10,7 @@ body:
         Please fill in as much of the following form as you're able.
   - type: input
     attributes:
-      label: Document Links
+      label: Document links
       description: Please fill in the link of the online documentation or the path of the offline documentation.
     validations:
       required: true

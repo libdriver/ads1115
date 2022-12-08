@@ -482,7 +482,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         ads1115_interface_debug_print("          [--low-threshold=<low>] [--high-threshold=<high>]\n");
         ads1115_interface_debug_print("  ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] \n");
         ads1115_interface_debug_print("          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]\n");
-        ads1115_interface_debug_print("  ads1115 (-e shot | --example shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] \n");
+        ads1115_interface_debug_print("  ads1115 (-e shot | --example=shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] \n");
         ads1115_interface_debug_print("          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]\n");
         ads1115_interface_debug_print("  ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] \n");
         ads1115_interface_debug_print("          [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] \n");
@@ -499,7 +499,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         ads1115_interface_debug_print("  -i, --information                      Show the chip information.\n");
         ads1115_interface_debug_print("      --low-threshold=<low>              Set the ADC interrupt low threshold.([default: 0.0f])\n");
         ads1115_interface_debug_print("      --mode=<THRESHOLD | WINDOW>        Set the ADC interrupt mode.([default: THRESHOLD])\n");
-        ads1115_interface_debug_print("  -p, --port                             Display the pins used by this device to connect the chip.\n");
+        ads1115_interface_debug_print("  -p, --port                             Display the pin connections of the current board.\n");
         ads1115_interface_debug_print("  -t <reg | read | muti | int>, --test=<reg | read | muti | int>.\n");
         ads1115_interface_debug_print("                                         Run the driver test.\n");
         ads1115_interface_debug_print("      --times=<num>                      Set the running times.([default: 3])\n");

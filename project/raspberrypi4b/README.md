@@ -2,11 +2,11 @@
 
 #### 1.1 Board Info
 
-board name : Raspberry Pi 4B.
+Board Name: Raspberry Pi 4B.
 
-iic pin: SCL/SDA GPIO3/GPIO2.
+IIC Pin: SCL/SDA GPIO3/GPIO2.
 
-gpio pin: INT GPIO17.
+GPIO Pin: INT GPIO17.
 
 ### 2. Install
 
@@ -76,27 +76,65 @@ find_package(ads1115 REQUIRED)
 
 #### 3.1 Command Instruction
 
-​          ads1115 is a basic command which can test all ads1115 driver function:
+1. Show ads1115 chip and driver information.
 
-​          ads1115 (-i | --information)        show ads1115 chip and driver information.
+```shell
+ads1115 (-i | --information)  
+```
 
-​          ads1115 (-h | --help)        show ads1115 help.
+2. Show ads1115 help.
 
-​          ads1115 (-p | --port)        show ads1115 pin connections of the current board.
+```shell
+ads1115 (-h | --help)        
+```
 
-​          ads1115 (-t reg | --test=reg) [--addr=<VCC | GND | SCL | SDA>]        run ads1115 register test. 
+3. Show ads1115 pin connections of the current board.
 
-​          ads1115 (-t read | --test=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>]        run ads1115 read test. num means test times.
+```shell
+ads1115 (-p | --port)        
+```
 
-​          ads1115 (-t muti | --test=muti) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]         run ads1115 mutichannel test.num means test times.
+4. Run ads1115 register test.
 
-​          ads1115 (-t int | --test=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--low-threshold=<low>] [--high-threshold=<high>]        run ads1115 interrupt test.num means test times.low and high means the interrupt threshold.
+```shell
+ads1115 (-t reg | --test=reg) [--addr=<VCC | GND | SCL | SDA>]         
+```
 
-​          ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]        run ads1115 read function.num means read times.
+5. Run ads1115 read test. num means test times.
 
-​          ads1115 (-e shot | --example shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]         run ads1115 shot function.num means read times.
+```shell
+ads1115 (-t read | --test=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>]
+```
 
-​          ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]        run ads1115 interrupt function. num means read times.low and high means the interrupt threshold.
+6. Run ads1115 mutichannel test.num means test times.
+
+```shell
+ads1115 (-t muti | --test=muti) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]        
+```
+
+7. Run ads1115 interrupt test.num means test times.low and high means the interrupt threshold.
+
+```shell
+ads1115 (-t int | --test=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--low-threshold=<low>] [--high-threshold=<high>]  
+```
+
+8. Run ads1115 read function.num means read times.
+
+```shell
+ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]      
+```
+
+9. Run ads1115 shot function.num means read times.
+
+```shell
+ads1115 (-e shot | --example=shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]      
+```
+
+10. Run ads1115 interrupt function. num means read times.low and high means the interrupt threshold.
+
+```shell
+ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]   
+```
 
 #### 3.2 Command Example
 
@@ -348,7 +386,7 @@ Usage:
           [--low-threshold=<low>] [--high-threshold=<high>]
   ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
           [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]
-  ads1115 (-e shot | --example shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
+  ads1115 (-e shot | --example=shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
           [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]
   ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] 
           [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] 
@@ -365,7 +403,7 @@ Options:
   -i, --information                      Show the chip information.
       --low-threshold=<low>              Set the ADC interrupt low threshold.([default: 0.0f])
       --mode=<THRESHOLD | WINDOW>        Set the ADC interrupt mode.([default: THRESHOLD])
-  -p, --port                             Display the pins used by this device to connect the chip.
+  -p, --port                             Display the pin connections of the current board.
   -t <reg | read | muti | int>, --test=<reg | read | muti | int>.
                                          Run the driver test.
       --times=<num>                      Set the running times.([default: 3])

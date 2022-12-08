@@ -66,37 +66,37 @@ We use '\n' to wrap lines.If your serial port assistant displays exceptions (e.g
     ads1115 (-t reg | --test=reg) [--addr=<VCC | GND | SCL | SDA>]         
     ```
 
-5. Run ads1115 read test. num means test times.
+5. Run ads1115 read test, num means test times.
 
     ```shell
     ads1115 (-t read | --test=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>]
     ```
 
-6. Run ads1115 mutichannel test.num means test times.
+6. Run ads1115 mutichannel test, num means test times.
 
     ```shell
     ads1115 (-t muti | --test=muti) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]        
     ```
 
-7. Run ads1115 interrupt test.num means test times.low and high means the interrupt threshold.
+7. Run ads1115 interrupt test, num means test times, low and high means the interrupt threshold.
 
     ```shell
     ads1115 (-t int | --test=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--low-threshold=<low>] [--high-threshold=<high>]  
     ```
 
-8. Run ads1115 read function.num means read times.
+8. Run ads1115 read function, num means read times.
 
     ```shell
     ads1115 (-e read | --example=read) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]      
     ```
 
-9. Run ads1115 shot function.num means read times.
+9. Run ads1115 shot function, num means read times.
 
     ```shell
     ads1115 (-e shot | --example=shot) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>]      
     ```
 
-10. Run ads1115 interrupt function. num means read times.low and high means the interrupt threshold.
+10. Run ads1115 interrupt function, num means read times, low and high means the interrupt threshold.
 
     ```shell
     ads1115 (-e int | --example=int) [--times=<num>] [--addr=<VCC | GND | SCL | SDA>] [--channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>] [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]

@@ -197,7 +197,7 @@ return 0;
 
 ### Dokument
 
-Online-Dokumente: https://www.libdriver.com/docs/ads1115/index.html.
+Online-Dokumente: [https://www.libdriver.com/docs/ads1115/index.html](https://www.libdriver.com/docs/ads1115/index.html).
 
 Offline-Dokumente: /doc/html/index.html.
 

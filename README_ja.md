@@ -198,7 +198,7 @@ return 0;
 
 ### ドキュメント
 
-オンラインドキュメント: https://www.libdriver.com/docs/ads1115/index.html。
+オンラインドキュメント: [https://www.libdriver.com/docs/ads1115/index.html](https://www.libdriver.com/docs/ads1115/index.html)。
 
 オフラインドキュメント: /doc/html/index.html。
 

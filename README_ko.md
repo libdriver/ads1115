@@ -198,7 +198,7 @@ return 0;
 
 ### 문서
 
-온라인 문서: https://www.libdriver.com/docs/ads1115/index.html.
+온라인 문서: [https://www.libdriver.com/docs/ads1115/index.html](https://www.libdriver.com/docs/ads1115/index.html).
 
 오프라인 문서: /doc/html/index.html.
 

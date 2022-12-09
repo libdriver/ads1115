@@ -198,7 +198,7 @@ return 0;
 
 ### 文檔
 
-在線文檔: https://www.libdriver.com/docs/ads1115/index.html。
+在線文檔: [https://www.libdriver.com/docs/ads1115/index.html](https://www.libdriver.com/docs/ads1115/index.html)。
 
 離線文檔: /doc/html/index.html。
 

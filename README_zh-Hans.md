@@ -198,7 +198,7 @@ return 0;
 
 ### 文档
 
-在线文档: https://www.libdriver.com/docs/ads1115/index.html。
+在线文档: [https://www.libdriver.com/docs/ads1115/index.html](https://www.libdriver.com/docs/ads1115/index.html)。
 
 离线文档: /doc/html/index.html。
 

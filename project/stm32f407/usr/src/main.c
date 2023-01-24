@@ -83,9 +83,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin)
  * @param[in] argc is arg numbers
  * @param[in] **argv is the arg address
  * @return    status code
- *             - 0 success
- *             - 1 run failed
- *             - 5 param is invalid
+ *            - 0 success
+ *            - 1 run failed
+ *            - 5 param is invalid
  * @note      none
  */
 uint8_t ads1115(uint8_t argc, char **argv)

@@ -80,7 +80,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 6},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     ads1115_address_t addr = ADS1115_ADDR_GND;
     ads1115_channel_t channel = ADS1115_CHANNEL_AIN0_GND;
@@ -566,7 +566,7 @@ int main(uint8_t argc, char **argv)
     }
     else
     {
-        ads1115_interface_debug_print("ads1115: unknow status code.\n");
+        ads1115_interface_debug_print("ads1115: unknown status code.\n");
     }
 
     return 0;

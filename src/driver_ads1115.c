@@ -213,7 +213,7 @@ uint8_t ads1115_deinit(ads1115_handle_t *handle)
         return 4;                                                                          /* return error */
     }
     conf &= ~(0x01 << 8);                                                                  /* clear bit */
-    conf |= 1 << 8;                                                                        /* set stop continus read */
+    conf |= 1 << 8;                                                                        /* set stop continues read */
     res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
     if (res != 0)                                                                          /* check error */
     {
@@ -846,14 +846,14 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
         
         return 1;                                                                              /* return error */
     }
-    range = (ads1115_range_t)((conf >> 9) & 0x07);                                             /* get range conif */
+    range = (ads1115_range_t)((conf >> 9) & 0x07);                                             /* get range conf */
     conf &= ~(1 << 8);                                                                         /* clear bit */
     conf |= 1 << 8;                                                                            /* set single read */
     conf |= 1 << 15;                                                                           /* start single read */
     res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                      /* write config */
     if (res != 0)                                                                              /* check error */
     {
-        handle->debug_print("ads1115: wirte config failed.\n");                                /* write config failed */
+        handle->debug_print("ads1115: write config failed.\n");                                /* write config failed */
         
         return 1;                                                                              /* return error */
     }
@@ -882,7 +882,7 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
     res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                       /* read data */
     if (res != 0)                                                                              /* check the result */
     {
-        handle->debug_print("ads1115: continus read failed.\n");                               /* continus read failed */
+        handle->debug_print("ads1115: continues read failed.\n");                              /* continues read failed */
         
         return 1;                                                                              /* return error */
     }
@@ -912,7 +912,7 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v)
     }
     else
     {
-        handle->debug_print("ads1115: range is invlaid.\n");                                   /* range is invlaid */
+        handle->debug_print("ads1115: range is invalid.\n");                                   /* range is invalid */
         
         return 1;                                                                              /* return error */
     }
@@ -955,7 +955,7 @@ uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
         
         return 1;                                                                          /* return error */
     }
-    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conif */
+    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conf */
     res = a_ads1115_iic_multiple_read(handle, ADS1115_REG_CONVERT, raw);                   /* read data */
     if (res != 0)                                                                          /* check error */
     {
@@ -989,7 +989,7 @@ uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
     }
     else
     {
-        handle->debug_print("ads1115: range is invlaid.\n");                               /* range is invlaid */
+        handle->debug_print("ads1115: range is invalid.\n");                               /* range is invalid */
         
         return 1;                                                                          /* return error */
     }
@@ -1072,7 +1072,7 @@ uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle)
         return 1;                                                                          /* return error */
     }
     conf &= ~(0x01 << 8);                                                                  /* clear bit */
-    conf |= 1 << 8;                                                                        /* set stop continus read */
+    conf |= 1 << 8;                                                                        /* set stop continues read */
     res = a_ads1115_iic_multiple_write(handle, ADS1115_REG_CONFIG, conf);                  /* write config */
     if (res != 0)                                                                          /* check error */
     {
@@ -1278,7 +1278,7 @@ uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *
         
         return 1;                                                                          /* return error */
     }
-    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conif */
+    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conf */
     if (range == ADS1115_RANGE_6P144V)                                                     /* if 6.144V */
     {
         *reg = (int16_t)(s * 32768.0f / 6.144f);                                           /* convert to reg */
@@ -1305,7 +1305,7 @@ uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *
     }
     else
     {
-        handle->debug_print("ads1115: range is invlaid.\n");                               /* range is invlaid */
+        handle->debug_print("ads1115: range is invalid.\n");                               /* range is invalid */
         
         return 1;                                                                          /* return error */
     }
@@ -1347,7 +1347,7 @@ uint8_t ads1115_convert_to_data(ads1115_handle_t *handle, int16_t reg, float *s)
         
         return 1;                                                                          /* return error */
     }
-    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conif */
+    range = (ads1115_range_t)((conf >> 9) & 0x07);                                         /* get range conf */
     if (range == ADS1115_RANGE_6P144V)                                                     /* if 6.144V */
     {
         *s = (float)(reg) * 6.144f / 32768.0f;                                             /* convert to data */
@@ -1374,7 +1374,7 @@ uint8_t ads1115_convert_to_data(ads1115_handle_t *handle, int16_t reg, float *s)
     }
     else
     {
-        handle->debug_print("ads1115: range is invlaid.\n");                               /* range is invlaid */
+        handle->debug_print("ads1115: range is invalid.\n");                               /* range is invalid */
         
         return 1;                                                                          /* return error */
     }
@@ -1458,7 +1458,7 @@ uint8_t ads1115_info(ads1115_info_t *info)
     info->max_current_ma = MAX_CURRENT;                             /* set maximum current */
     info->temperature_max = TEMPERATURE_MAX;                        /* set minimal temperature */
     info->temperature_min = TEMPERATURE_MIN;                        /* set maximum temperature */
-    info->driver_version = DRIVER_VERSION;                          /* set driver verison */
+    info->driver_version = DRIVER_VERSION;                          /* set driver version */
     
     return 0;                                                       /* success return 0 */
 }

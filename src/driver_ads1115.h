@@ -244,7 +244,7 @@ typedef struct ads1115_info_s
 /**
  * @brief     link iic_write function
  * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to an iic_wrtie function address
+ * @param[in] FUC points to an iic_write function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_IIC_WRITE(HANDLE, FUC)   (HANDLE)->iic_write = FUC

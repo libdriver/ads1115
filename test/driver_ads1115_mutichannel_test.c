@@ -130,7 +130,7 @@ uint8_t ads1115_multichannel_test(ads1115_address_t addr, ads1115_channel_t chan
     res = ads1115_set_compare_mode(&gs_handle, ADS1115_COMPARE_THRESHOLD);
     if (res != 0)
     {
-        ads1115_interface_debug_print("ads1115: set compate mode failed.\n");
+        ads1115_interface_debug_print("ads1115: set compare mode failed.\n");
         (void)ads1115_deinit(&gs_handle);
         
         return 1;

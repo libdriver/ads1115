@@ -138,7 +138,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     res = ads1115_set_compare_mode(&gs_handle, ADS1115_COMPARE_THRESHOLD);
     if (res != 0)
     {
-        ads1115_interface_debug_print("ads1115: set compate mode failed.\n");
+        ads1115_interface_debug_print("ads1115: set compare mode failed.\n");
         (void)ads1115_deinit(&gs_handle);
         
         return 1;
@@ -215,7 +215,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     res = ads1115_start_continuous_read(&gs_handle);
     if (res != 0)
     {
-        ads1115_interface_debug_print("ads1115: start continus read mode failed.\n");
+        ads1115_interface_debug_print("ads1115: start continues read mode failed.\n");
         (void)ads1115_deinit(&gs_handle);
         
         return 1;
@@ -237,7 +237,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
             
             return 1;
         }
-        ads1115_interface_debug_print("ads1115: %d continus mode %0.3fV.\n", i+1, s);
+        ads1115_interface_debug_print("ads1115: %d continues mode %0.3fV.\n", i+1, s);
         ads1115_interface_delay_ms(1000);
     }
     
@@ -245,7 +245,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     res = ads1115_stop_continuous_read(&gs_handle);
     if (res != 0)
     {
-        ads1115_interface_debug_print("ads1115: stop continus read mode failed.\n");
+        ads1115_interface_debug_print("ads1115: stop continues read mode failed.\n");
         (void)ads1115_deinit(&gs_handle);
         
         return 1;

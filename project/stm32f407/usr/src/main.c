@@ -108,7 +108,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 6},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     ads1115_address_t addr = ADS1115_ADDR_GND;
     ads1115_channel_t channel = ADS1115_CHANNEL_AIN0_GND;
@@ -584,7 +584,7 @@ int main(void)
     /* uart init */
     uart_init(115200);
 
-    /* shell init && register ads1115 fuction */
+    /* shell init && register ads1115 function */
     shell_init();
     shell_register("ads1115", ads1115);
     uart_print("ads1115: welcome to libdriver ads1115.\n");
@@ -607,7 +607,7 @@ int main(void)
             }
             else if (res == 2)
             {
-                uart_print("ads1115: unknow command.\n");
+                uart_print("ads1115: unknown command.\n");
             }
             else if (res == 3)
             {
@@ -623,7 +623,7 @@ int main(void)
             }
             else
             {
-                uart_print("ads1115: unknow status code.\n");
+                uart_print("ads1115: unknown status code.\n");
             }
             uart_flush();
         }

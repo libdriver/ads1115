@@ -1,6 +1,6 @@
 /**
  * @mainpage  LibDriver ADS1115
- * @brief     libdriver ads1115 is a full function driver of ad1115 and it can run in both MCU and Linux platform.
+ * @brief     LibDriver ADS1115 is a full function driver of ADS1115 and it can run in both MCU and Linux platform.
  * @version   2.0.0
  * @author    Shifeng Li
  *

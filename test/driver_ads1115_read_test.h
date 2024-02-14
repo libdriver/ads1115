@@ -37,11 +37,12 @@
 
 #ifndef DRIVER_ADS1115_READ_TEST_H
 #define DRIVER_ADS1115_READ_TEST_H
+
+#include "driver_ads1115_interface.h"
+
 #ifdef __cplusplus
 extern "C"{
 #endif
-
-#include "driver_ads1115_interface.h"
 
 /**
  * @addtogroup ads1115_test_driver

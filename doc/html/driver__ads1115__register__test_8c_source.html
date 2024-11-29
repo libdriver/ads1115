@@ -860,8 +860,8 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;    </div>
 <div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;    <span class="comment">/* ads1115_set_compare_threshold/ads1115_get_compare_threshold test */</span></div>
 <div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: ads1115_set_compare_threshold/ads1115_get_compare_threshold test.\n&quot;</span>);</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;    high_threshold_before = rand()%8196;</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;    low_threshold_before = -rand()%8196;</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;    high_threshold_before = rand() % 8196;</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;    low_threshold_before = -rand() % 8196;</div>
 <div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c22e17d86270d8e550d9132e304d2d6">ads1115_set_compare_threshold</a>(&amp;gs_handle, high_threshold_before, low_threshold_before);</div>
 <div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
 <div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;    {</div>
@@ -937,7 +937,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;        </div>
 <div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;    }</div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    f_reg = -(rand()%6144)/1000.0f;</div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    f_reg = -(rand() % 6144) / 1000.0f;</div>
 <div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
@@ -958,7 +958,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;        </div>
 <div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    }</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;    f_reg = (rand()%4096)/1000.0f;</div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;    f_reg = (rand() % 4096) / 1000.0f;</div>
 <div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
@@ -979,7 +979,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;        </div>
 <div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;    }</div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;    f_reg = -(rand()%2048)/1000.0f;</div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;    f_reg = -(rand() % 2048) / 1000.0f;</div>
 <div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
@@ -1000,7 +1000,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;        </div>
 <div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;    }</div>
-<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;    f_reg = (rand()%1024)/1000.0f;</div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;    f_reg = (rand() % 1024) / 1000.0f;</div>
 <div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
@@ -1021,7 +1021,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;        </div>
 <div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;    }</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;    f_reg = -(rand()%512)/1000.0f;</div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;    f_reg = -(rand() % 512) / 1000.0f;</div>
 <div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
@@ -1042,7 +1042,7 @@ $(document).ready(function(){initNavTree('driver__ads1115__register__test_8c_sou
 <div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;        </div>
 <div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;    }</div>
-<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;    f_reg = (rand()%256)/1000.0f;</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;    f_reg = (rand() % 256) / 1000.0f;</div>
 <div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    <a class="code" href="group__ads1115__interface__driver.html#ga7a540a82ef71d79205a93d367091cff8">ads1115_interface_debug_print</a>(<span class="stringliteral">&quot;ads1115: convert to register %0.2fV.\n&quot;</span>, f_reg);</div>
 <div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;    res = <a class="code" href="group__ads1115__interrupt__driver.html#ga4c0ac892b7b5b7260482ddda16f53813">ads1115_convert_to_register</a>(&amp;gs_handle, f_reg, (int16_t *)&amp;reg);</div>
 <div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>

@@ -41,8 +41,8 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
 
 /**
  * @brief     shot example init
- * @param[in] addr is the iic device address
- * @param[in] channel is the adc channel
+ * @param[in] addr iic device address
+ * @param[in] channel adc channel
  * @return    status code
  *            - 0 success
  *            - 1 init failed
@@ -124,7 +124,7 @@ uint8_t ads1115_shot_init(ads1115_address_t addr, ads1115_channel_t channel)
 
 /**
  * @brief      shot example read
- * @param[out] *s points to a converted adc buffer
+ * @param[out] *s pointer to a converted adc buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed

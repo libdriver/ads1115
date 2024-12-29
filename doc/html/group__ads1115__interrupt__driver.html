@@ -269,9 +269,9 @@ Functions</h2></td></tr>
 <p>convert a register raw data to a converted adc data </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>is the register raw data </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*s</td><td>points to a converted adc value buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>register raw data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*s</td><td>pointer to a converted adc value buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -323,9 +323,9 @@ Functions</h2></td></tr>
 <p>convert a adc value to a register raw data </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>is a converted adc value </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*reg</td><td>points to a register raw buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>converted adc value </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*reg</td><td>pointer to a register raw buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -371,8 +371,8 @@ Functions</h2></td></tr>
 <p>get the alert pin active status </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*pin</td><td>points to a pin alert active status buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pin</td><td>pointer to a pin alert active status buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -418,8 +418,8 @@ Functions</h2></td></tr>
 <p>get the interrupt comparator queue </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*comparator_queue</td><td>points to an interrupt comparator queue </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*comparator_queue</td><td>pointer to an interrupt comparator queue </td></tr>
   </table>
   </dd>
 </dl>
@@ -465,8 +465,8 @@ Functions</h2></td></tr>
 <p>get the interrupt compare status </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*enable</td><td>points to a bool value buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*enable</td><td>pointer to a bool value buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -512,8 +512,8 @@ Functions</h2></td></tr>
 <p>get the interrupt compare mode </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*compare</td><td>points to an interrupt compare mode buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*compare</td><td>pointer to an interrupt compare mode buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -565,9 +565,9 @@ Functions</h2></td></tr>
 <p>get the interrupt compare threshold </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*high_threshold</td><td>points to an interrupt high threshold buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*low_threshold</td><td>points to an interrupt low threshold buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*high_threshold</td><td>pointer to an interrupt high threshold buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*low_threshold</td><td>pointer to an interrupt low threshold buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -613,8 +613,8 @@ Functions</h2></td></tr>
 <p>set the alert pin active status </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>is the alert active status </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>alert active status pin </td></tr>
   </table>
   </dd>
 </dl>
@@ -660,8 +660,8 @@ Functions</h2></td></tr>
 <p>set the interrupt comparator queue </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comparator_queue</td><td>is the interrupt comparator queue </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">comparator_queue</td><td>interrupt comparator queue </td></tr>
   </table>
   </dd>
 </dl>
@@ -707,8 +707,8 @@ Functions</h2></td></tr>
 <p>enable or disable the interrupt compare </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">enable</td><td>is a bool value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enable</td><td>bool value </td></tr>
   </table>
   </dd>
 </dl>
@@ -754,8 +754,8 @@ Functions</h2></td></tr>
 <p>set the interrupt compare mode </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">compare</td><td>is the interrupt compare mode </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">compare</td><td>interrupt compare mode </td></tr>
   </table>
   </dd>
 </dl>
@@ -807,9 +807,9 @@ Functions</h2></td></tr>
 <p>set the interrupt compare threshold </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">high_threshold</td><td>is the interrupt high threshold </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">low_threshold</td><td>is the interrupt low threshold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">high_threshold</td><td>interrupt high threshold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">low_threshold</td><td>interrupt low threshold </td></tr>
   </table>
   </dd>
 </dl>

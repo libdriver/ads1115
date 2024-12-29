@@ -41,11 +41,11 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
 
 /**
  * @brief     interrupt example init
- * @param[in] addr is the iic device address
- * @param[in] channel is the adc channel
- * @param[in] compare is the interrupt compare mode
- * @param[in] f_high_threshold is the interrupt high threshold
- * @param[in] f_low_threshold is the interrupt low threshold
+ * @param[in] addr iic device address
+ * @param[in] channel adc channel
+ * @param[in] compare interrupt compare mode
+ * @param[in] f_high_threshold interrupt high threshold
+ * @param[in] f_low_threshold interrupt low threshold
  * @return    status code
  *            - 0 success
  *            - 1 init failed
@@ -200,7 +200,7 @@ uint8_t ads1115_interrupt_init(ads1115_address_t addr, ads1115_channel_t channel
 
 /**
  * @brief      interrupt example read
- * @param[out] *s points to a converted adc buffer
+ * @param[out] *s pointer to a converted adc buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed

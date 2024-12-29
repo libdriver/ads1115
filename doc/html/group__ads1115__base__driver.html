@@ -446,9 +446,9 @@ Functions</h2></td></tr>
 <p>read data from the chip continuously </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*raw</td><td>points to a raw adc buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*v</td><td>points to a converted adc buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*raw</td><td>pointer to a raw adc buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*v</td><td>pointer to a converted adc buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -484,7 +484,7 @@ Functions</h2></td></tr>
 <p>close the chip </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -531,8 +531,8 @@ Functions</h2></td></tr>
 <p>get the iic address pin </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*addr_pin</td><td>points to a chip iic address pin buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*addr_pin</td><td>pointer to a chip iic address pin buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -577,8 +577,8 @@ Functions</h2></td></tr>
 <p>get the adc channel </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*channel</td><td>points to a channel buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*channel</td><td>pointer to a channel buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -624,8 +624,8 @@ Functions</h2></td></tr>
 <p>get the adc range </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*range</td><td>points to a voltage range buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*range</td><td>pointer to a voltage range buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -671,8 +671,8 @@ Functions</h2></td></tr>
 <p>get the sample rate </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*rate</td><td>points to an adc sample rate buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*rate</td><td>pointer to an adc sample rate buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -708,7 +708,7 @@ Functions</h2></td></tr>
 <p>get chip's information </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">*info</td><td>points to an ads1115 info structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*info</td><td>pointer to an ads1115 info structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -742,7 +742,7 @@ Functions</h2></td></tr>
 <p>initialize the chip </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -788,8 +788,8 @@ Functions</h2></td></tr>
 <p>set the iic address pin </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr_pin</td><td>is the chip iic address pin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr_pin</td><td>iic address pin </td></tr>
   </table>
   </dd>
 </dl>
@@ -834,8 +834,8 @@ Functions</h2></td></tr>
 <p>set the adc channel </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">channel</td><td>is the adc channel </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channel</td><td>adc channel </td></tr>
   </table>
   </dd>
 </dl>
@@ -881,8 +881,8 @@ Functions</h2></td></tr>
 <p>set the adc range </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">range</td><td>is the adc max voltage range </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">range</td><td>adc max voltage range </td></tr>
   </table>
   </dd>
 </dl>
@@ -928,8 +928,8 @@ Functions</h2></td></tr>
 <p>set the sample rate </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rate</td><td>is the adc sample rate </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rate</td><td>adc sample rate </td></tr>
   </table>
   </dd>
 </dl>
@@ -981,9 +981,9 @@ Functions</h2></td></tr>
 <p>read data from the chip once </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*raw</td><td>points to a raw adc buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*v</td><td>points to a converted adc buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*raw</td><td>pointer to a raw adc buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*v</td><td>pointer to a converted adc buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -1019,7 +1019,7 @@ Functions</h2></td></tr>
 <p>start the chip reading </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -1055,7 +1055,7 @@ Functions</h2></td></tr>
 <p>stop the chip reading </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ads1115 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ads1115 handle structure </td></tr>
   </table>
   </dd>
 </dl>

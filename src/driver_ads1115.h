@@ -211,56 +211,56 @@ typedef struct ads1115_info_s
 
 /**
  * @brief     initialize ads1115_handle_t structure
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] STRUCTURE is ads1115_handle_t
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] STRUCTURE ads1115_handle_t
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_INIT(HANDLE, STRUCTURE)   memset(HANDLE, 0, sizeof(STRUCTURE))
 
 /**
  * @brief     link iic_init function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to an iic_init function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to an iic_init function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_IIC_INIT(HANDLE, FUC)    (HANDLE)->iic_init = FUC
 
 /**
  * @brief     link iic_deinit function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to an iic_deinit function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to an iic_deinit function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_IIC_DEINIT(HANDLE, FUC)  (HANDLE)->iic_deinit = FUC
 
 /**
  * @brief     link iic_read function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to an iic_read function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to an iic_read function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_IIC_READ(HANDLE, FUC)    (HANDLE)->iic_read = FUC
 
 /**
  * @brief     link iic_write function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to an iic_write function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to an iic_write function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_IIC_WRITE(HANDLE, FUC)   (HANDLE)->iic_write = FUC
 
 /**
  * @brief     link delay_ms function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to a delay_ms function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to a delay_ms function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_DELAY_MS(HANDLE, FUC)    (HANDLE)->delay_ms = FUC
 
 /**
  * @brief     link debug_print function
- * @param[in] HANDLE points to an ads1115 handle structure
- * @param[in] FUC points to a debug_print function address
+ * @param[in] HANDLE pointer to an ads1115 handle structure
+ * @param[in] FUC pointer to a debug_print function address
  * @note      none
  */
 #define DRIVER_ADS1115_LINK_DEBUG_PRINT(HANDLE, FUC) (HANDLE)->debug_print = FUC
@@ -278,7 +278,7 @@ typedef struct ads1115_info_s
 
 /**
  * @brief      get chip's information
- * @param[out] *info points to an ads1115 info structure
+ * @param[out] *info pointer to an ads1115 info structure
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -288,8 +288,8 @@ uint8_t ads1115_info(ads1115_info_t *info);
 
 /**
  * @brief     set the iic address pin
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] addr_pin is the chip iic address pin
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] addr_pin iic address pin
  * @return    status code
  *            - 0 success
  *            - 1 set addr pin failed
@@ -300,8 +300,8 @@ uint8_t ads1115_set_addr_pin(ads1115_handle_t *handle, ads1115_address_t addr_pi
 
 /**
  * @brief      get the iic address pin
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *addr_pin points to a chip iic address pin buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *addr_pin pointer to a chip iic address pin buffer
  * @return      status code
  *              - 0 success
  *              - 1 get addr pin failed
@@ -312,7 +312,7 @@ uint8_t ads1115_get_addr_pin(ads1115_handle_t *handle, ads1115_address_t *addr_p
 
 /**
  * @brief     initialize the chip
- * @param[in] *handle points to an ads1115 handle structure
+ * @param[in] *handle pointer to an ads1115 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic initialization failed
@@ -324,7 +324,7 @@ uint8_t ads1115_init(ads1115_handle_t *handle);
 
 /**
  * @brief     close the chip
- * @param[in] *handle points to an ads1115 handle structure
+ * @param[in] *handle pointer to an ads1115 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic deinit failed
@@ -337,9 +337,9 @@ uint8_t ads1115_deinit(ads1115_handle_t *handle);
 
 /**
  * @brief      read data from the chip once
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *raw points to a raw adc buffer
- * @param[out] *v points to a converted adc buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *raw pointer to a raw adc buffer
+ * @param[out] *v pointer to a converted adc buffer
  * @return     status code
  *             - 0 success
  *             - 1 single read failed
@@ -351,7 +351,7 @@ uint8_t ads1115_single_read(ads1115_handle_t *handle, int16_t *raw, float *v);
 
 /**
  * @brief     start the chip reading
- * @param[in] *handle points to an ads1115 handle structure
+ * @param[in] *handle pointer to an ads1115 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 start continuous read failed
@@ -363,7 +363,7 @@ uint8_t ads1115_start_continuous_read(ads1115_handle_t *handle);
 
 /**
  * @brief     stop the chip reading
- * @param[in] *handle points to an ads1115 handle structure
+ * @param[in] *handle pointer to an ads1115 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 stop continuous read failed
@@ -375,9 +375,9 @@ uint8_t ads1115_stop_continuous_read(ads1115_handle_t *handle);
 
 /**
  * @brief      read data from the chip continuously
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *raw points to a raw adc buffer
- * @param[out] *v points to a converted adc buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *raw pointer to a raw adc buffer
+ * @param[out] *v pointer to a converted adc buffer
  * @return     status code
  *             - 0 success
  *             - 1 continuous read failed
@@ -390,8 +390,8 @@ uint8_t ads1115_continuous_read(ads1115_handle_t *handle,int16_t *raw, float *v)
 
 /**
  * @brief     set the adc channel
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] channel is the adc channel
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] channel adc channel
  * @return    status code
  *            - 0 success
  *            - 1 set channel failed
@@ -403,8 +403,8 @@ uint8_t ads1115_set_channel(ads1115_handle_t *handle, ads1115_channel_t channel)
 
 /**
  * @brief      get the adc channel
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *channel points to a channel buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *channel pointer to a channel buffer
  * @return     status code
  *             - 0 success
  *             - 1 get channel failed
@@ -416,8 +416,8 @@ uint8_t ads1115_get_channel(ads1115_handle_t *handle, ads1115_channel_t *channel
 
 /**
  * @brief     set the adc range
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] range is the adc max voltage range
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] range adc max voltage range
  * @return    status code
  *            - 0 success
  *            - 1 set range failed
@@ -429,8 +429,8 @@ uint8_t ads1115_set_range(ads1115_handle_t *handle, ads1115_range_t range);
 
 /**
  * @brief      get the adc range
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *range points to a voltage range buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *range pointer to a voltage range buffer
  * @return     status code
  *             - 0 success
  *             - 1 get range failed
@@ -442,8 +442,8 @@ uint8_t ads1115_get_range(ads1115_handle_t *handle, ads1115_range_t *range);
 
 /**
  * @brief     set the sample rate
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] rate is the adc sample rate
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] rate adc sample rate
  * @return    status code
  *            - 0 success
  *            - 1 set rate failed
@@ -455,8 +455,8 @@ uint8_t ads1115_set_rate(ads1115_handle_t *handle, ads1115_rate_t rate);
 
 /**
  * @brief      get the sample rate
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *rate points to an adc sample rate buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *rate pointer to an adc sample rate buffer
  * @return     status code
  *             - 0 success
  *             - 1 get rate failed
@@ -479,8 +479,8 @@ uint8_t ads1115_get_rate(ads1115_handle_t *handle, ads1115_rate_t *rate);
 
 /**
  * @brief     set the alert pin active status
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] pin is the alert active status
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] pin alert active status pin
  * @return    status code
  *            - 0 success
  *            - 1 set alert pin failed
@@ -492,8 +492,8 @@ uint8_t ads1115_set_alert_pin(ads1115_handle_t *handle, ads1115_pin_t pin);
 
 /**
  * @brief      get the alert pin active status
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *pin points to a pin alert active status buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *pin pointer to a pin alert active status buffer
  * @return     status code
  *             - 0 success
  *             - 1 get alert pin failed
@@ -505,8 +505,8 @@ uint8_t ads1115_get_alert_pin(ads1115_handle_t *handle, ads1115_pin_t *pin);
 
 /**
  * @brief     set the interrupt compare mode
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] compare is the interrupt compare mode
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] compare interrupt compare mode
  * @return    status code
  *            - 0 success
  *            - 1 set compare mode failed
@@ -518,8 +518,8 @@ uint8_t ads1115_set_compare_mode(ads1115_handle_t *handle, ads1115_compare_t com
 
 /**
  * @brief      get the interrupt compare mode
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *compare points to an interrupt compare mode buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *compare pointer to an interrupt compare mode buffer
  * @return     status code
  *             - 0 success
  *             - 1 get compare mode failed
@@ -531,8 +531,8 @@ uint8_t ads1115_get_compare_mode(ads1115_handle_t *handle, ads1115_compare_t *co
 
 /**
  * @brief     set the interrupt comparator queue
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] comparator_queue is the interrupt comparator queue
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] comparator_queue interrupt comparator queue
  * @return    status code
  *            - 0 success
  *            - 1 set comparator queue failed
@@ -544,8 +544,8 @@ uint8_t ads1115_set_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
 
 /**
  * @brief      get the interrupt comparator queue
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *comparator_queue points to an interrupt comparator queue
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *comparator_queue pointer to an interrupt comparator queue
  * @return     status code
  *             - 0 success
  *             - 1 get comparator queue failed
@@ -557,8 +557,8 @@ uint8_t ads1115_get_comparator_queue(ads1115_handle_t *handle, ads1115_comparato
 
 /**
  * @brief     enable or disable the interrupt compare
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] enable is a bool value
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] enable bool value
  * @return    status code
  *            - 0 success
  *            - 1 set compare failed
@@ -570,8 +570,8 @@ uint8_t ads1115_set_compare(ads1115_handle_t *handle, ads1115_bool_t enable);
 
 /**
  * @brief      get the interrupt compare status
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get compare failed
@@ -583,9 +583,9 @@ uint8_t ads1115_get_compare(ads1115_handle_t *handle, ads1115_bool_t *enable);
 
 /**
  * @brief     set the interrupt compare threshold
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] high_threshold is the interrupt high threshold
- * @param[in] low_threshold is the interrupt low threshold
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] high_threshold interrupt high threshold
+ * @param[in] low_threshold interrupt low threshold
  * @return    status code
  *            - 0 success
  *            - 1 set compare threshold failed
@@ -597,9 +597,9 @@ uint8_t ads1115_set_compare_threshold(ads1115_handle_t *handle, int16_t high_thr
 
 /**
  * @brief      get the interrupt compare threshold
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[out] *high_threshold points to an interrupt high threshold buffer
- * @param[out] *low_threshold points to an interrupt low threshold buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[out] *high_threshold pointer to an interrupt high threshold buffer
+ * @param[out] *low_threshold pointer to an interrupt low threshold buffer
  * @return     status code
  *             - 0 success
  *             - 1 get compare threshold failed
@@ -611,9 +611,9 @@ uint8_t ads1115_get_compare_threshold(ads1115_handle_t *handle, int16_t *high_th
 
 /**
  * @brief      convert a adc value to a register raw data
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[in]  s is a converted adc value
- * @param[out] *reg points to a register raw buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[in]  s converted adc value
+ * @param[out] *reg pointer to a register raw buffer
  * @return     status code
  *             - 0 success
  *             - 1 convert to register failed
@@ -625,9 +625,9 @@ uint8_t ads1115_convert_to_register(ads1115_handle_t *handle, float s, int16_t *
 
 /**
  * @brief      convert a register raw data to a converted adc data
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[in]  reg is the register raw data
- * @param[out] *s points to a converted adc value buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[in]  reg register raw data
+ * @param[out] *s pointer to a converted adc value buffer
  * @return     status code
  *             - 0 success
  *             - 1 convert to data failed
@@ -650,9 +650,9 @@ uint8_t ads1115_convert_to_data(ads1115_handle_t *handle, int16_t reg, float *s)
 
 /**
  * @brief     set the chip register
- * @param[in] *handle points to an ads1115 handle structure
- * @param[in] reg is the iic register address
- * @param[in] value is the data written to the register
+ * @param[in] *handle pointer to an ads1115 handle structure
+ * @param[in] reg iic register address
+ * @param[in] value data written to the register
  * @return    status code
  *            - 0 success
  *            - 1 write failed
@@ -664,9 +664,9 @@ uint8_t ads1115_set_reg(ads1115_handle_t *handle, uint8_t reg, int16_t value);
 
 /**
  * @brief      get the chip register
- * @param[in]  *handle points to an ads1115 handle structure
- * @param[in]  reg is the iic register address
- * @param[out] *value points to a read data buffer
+ * @param[in]  *handle pointer to an ads1115 handle structure
+ * @param[in]  reg iic register address
+ * @param[out] *value pointer to a read data buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed

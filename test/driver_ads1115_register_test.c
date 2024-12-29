@@ -42,7 +42,7 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
 
 /**
  * @brief     register test
- * @param[in] addr is the iic device address
+ * @param[in] addr iic device address
  * @return    status code
  *            - 0 success
  *            - 1 test failed
@@ -815,8 +815,8 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
     
     /* ads1115_set_compare_threshold/ads1115_get_compare_threshold test */
     ads1115_interface_debug_print("ads1115: ads1115_set_compare_threshold/ads1115_get_compare_threshold test.\n");
-    high_threshold_before = rand()%8196;
-    low_threshold_before = -rand()%8196;
+    high_threshold_before = rand() % 8196;
+    low_threshold_before = -rand() % 8196;
     res = ads1115_set_compare_threshold(&gs_handle, high_threshold_before, low_threshold_before);
     if (res != 0)
     {
@@ -892,7 +892,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = -(rand()%6144)/1000.0f;
+    f_reg = -(rand() % 6144) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)
@@ -913,7 +913,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = (rand()%4096)/1000.0f;
+    f_reg = (rand() % 4096) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)
@@ -934,7 +934,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = -(rand()%2048)/1000.0f;
+    f_reg = -(rand() % 2048) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)
@@ -955,7 +955,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = (rand()%1024)/1000.0f;
+    f_reg = (rand() % 1024) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)
@@ -976,7 +976,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = -(rand()%512)/1000.0f;
+    f_reg = -(rand() % 512) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)
@@ -997,7 +997,7 @@ uint8_t ads1115_register_test(ads1115_address_t addr)
         
         return 1;
     }
-    f_reg = (rand()%256)/1000.0f;
+    f_reg = (rand() % 256) / 1000.0f;
     ads1115_interface_debug_print("ads1115: convert to register %0.2fV.\n", f_reg);
     res = ads1115_convert_to_register(&gs_handle, f_reg, (int16_t *)&reg);
     if (res != 0)

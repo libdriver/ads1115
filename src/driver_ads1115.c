@@ -772,11 +772,11 @@ uint8_t ads1115_set_addr_pin(ads1115_handle_t *handle, ads1115_address_t addr_pi
  * @brief      get the iic address pin
  * @param[in]  *handle pointer to an ads1115 handle structure
  * @param[out] *addr_pin pointer to a chip iic address pin buffer
- * @return      status code
- *              - 0 success
- *              - 1 get addr pin failed
- *              - 2 handle is NULL
- * @note        none
+ * @return     status code
+ *             - 0 success
+ *             - 1 get addr pin failed
+ *             - 2 handle is NULL
+ * @note       none
  */
 uint8_t ads1115_get_addr_pin(ads1115_handle_t *handle, ads1115_address_t *addr_pin)
 {

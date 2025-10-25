@@ -391,7 +391,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         res = ads1115_shot_init(addr, channel);
         if (res != 0)
         {
-            ads1115_interface_debug_print("ads1115: basic init failed.\n");
+            ads1115_interface_debug_print("ads1115: shot init failed.\n");
             
             return 1;
         }
@@ -401,7 +401,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
             res = ads1115_shot_read((float *)&s);
             if (res != 0)
             {
-                ads1115_interface_debug_print("ads1115: basic read failed.\n");
+                ads1115_interface_debug_print("ads1115: shot read failed.\n");
                 (void)ads1115_shot_deinit();
                 
                 return 1;
@@ -489,7 +489,7 @@ uint8_t ads1115(uint8_t argc, char **argv)
         ads1115_interface_debug_print("          [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]\n");
         ads1115_interface_debug_print("\n");
         ads1115_interface_debug_print("Options:\n");
-        ads1115_interface_debug_print("      --addr==<VCC | GND | SCL | SDA>    Set the connection of the addr pin.([default: GND])\n");
+        ads1115_interface_debug_print("      --addr=<VCC | GND | SCL | SDA>     Set the connection of the addr pin.([default: GND])\n");
         ads1115_interface_debug_print("      --channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>\n");
         ads1115_interface_debug_print("                                         Set the ADC channel.([default: AIN0_GND])\n");
         ads1115_interface_debug_print("  -e <read | shot | int>, --example=<read | shot | int>\n");

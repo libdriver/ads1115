@@ -123,7 +123,7 @@ uint8_t ads1115_basic_init(ads1115_address_t addr, ads1115_channel_t channel)
     res = ads1115_start_continuous_read(&gs_handle);
     if (res != 0)
     {
-        ads1115_interface_debug_print("ads1115: start continus read mode failed.\n");
+        ads1115_interface_debug_print("ads1115: start continuous read mode failed.\n");
         (void)ads1115_deinit(&gs_handle);
         
         return 1;

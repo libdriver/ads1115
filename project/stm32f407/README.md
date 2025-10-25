@@ -359,7 +359,7 @@ Usage:
           [--mode=<THRESHOLD | WINDOW>] [--low-threshold=<low>] [--high-threshold=<high>]
 
 Options:
-      --addr==<VCC | GND | SCL | SDA>    Set the connection of the addr pin.([default: GND])
+      --addr=<VCC | GND | SCL | SDA>     Set the connection of the addr pin.([default: GND])
       --channel=<AIN0_AIN1 | AIN0_AIN3 | AIN1_AIN3 | AIN2_AIN3 | AIN0_GND | AIN1_GND | AIN2_GND | AIN3_GND>
                                          Set the ADC channel.([default: AIN0_GND])
   -e <read | shot | int>, --example=<read | shot | int>

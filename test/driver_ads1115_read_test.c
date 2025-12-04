@@ -50,9 +50,10 @@ static ads1115_handle_t gs_handle;        /**< ads1115 handle */
  */
 uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
 {
-    uint8_t res, i;
+    uint8_t res;
     int16_t high_threshold;
     int16_t low_threshold;
+    uint32_t i;
     ads1115_info_t info;
     
     /* link interface function */
@@ -223,7 +224,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* delay 100 ms */
     ads1115_interface_delay_ms(100);
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         int16_t raw;
         float s;
@@ -253,7 +254,7 @@ uint8_t ads1115_read_test(ads1115_address_t addr, uint32_t times)
     
     /* start single read */
     ads1115_interface_debug_print("ads1115: single read test.\n");
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         int16_t raw;
         float s;

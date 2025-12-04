@@ -206,7 +206,7 @@ uint8_t ads1115_multichannel_test(ads1115_address_t addr, ads1115_channel_t chan
         
         return 1;
     }
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         int16_t raw;
         float s;

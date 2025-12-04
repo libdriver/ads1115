@@ -212,7 +212,7 @@ uint8_t ads1115_compare_test(ads1115_address_t addr, ads1115_channel_t channel, 
     
     /* start compare mode test */
     ads1115_interface_debug_print("ads1115: start compare mode test.\n");
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         int16_t raw;
         float s;

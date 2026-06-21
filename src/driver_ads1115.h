@@ -154,7 +154,7 @@ typedef enum
 {
     ADS1115_COMPARATOR_QUEUE_1_CONV    = 0x00,        /**< comparator queue has 1 conv */
     ADS1115_COMPARATOR_QUEUE_2_CONV    = 0x01,        /**< comparator queue has 2 conv */
-    ADS1115_COMPARATOR_QUEUE_4_CONV    = 0x02,        /**< comparator queue has 3 conv */
+    ADS1115_COMPARATOR_QUEUE_4_CONV    = 0x02,        /**< comparator queue has 4 conv */
     ADS1115_COMPARATOR_QUEUE_NONE_CONV = 0x03,        /**< comparator queue has no conv */
 } ads1115_comparator_queue_t;
 
